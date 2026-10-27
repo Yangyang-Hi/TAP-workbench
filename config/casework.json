@@ -1,0 +1,19 @@
+{
+  "version": "weekly-authoritative-v1-2026-10-21",
+  "business_confirmed": true,
+  "operators": ["heyangyang.31"],
+  "members": [
+    {"username": "heyangyang.31", "display_name": "何扬扬 · 测试运营", "open_id": ""}
+  ],
+  "test_recipients": [],
+  "notification_mode": "disabled",
+  "auto_send_enabled": false,
+  "workflow": {
+    "customer": [
+      {"id":"tap_remove","label":"TAP 移除","status":"closed","fields":[{"key":"rca","label":"RCA 归因","required":true}]},
+      {"id":"update_threshold","label":"更新阈值","status":"closed","fields":[{"key":"rca","label":"RCA 归因","required":true}]},
+      {"id":"continue_observe","label":"继续观察","status":"closed","fields":[{"key":"rca","label":"RCA 归因","required":true}]}
+    ],
+    "quota": []
+  }
+}

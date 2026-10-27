@@ -1,0 +1,762 @@
+{
+  "version": "2026-10-26.v1",
+  "normalization": "trim whitespace around hierarchy separators only",
+  "entries": [
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_no_label -",
+      "display_name_en": "Dislike — Unspecified",
+      "description": "用户点踩，未提供具体原因",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_unpleasant -",
+      "display_name_en": "Unpleasant Ad",
+      "description": "广告引起不愉快体验",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - duplicated_ads -  -",
+      "display_name_en": "Repeated Ads",
+      "description": "广告重复出现",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_irrelevant -",
+      "display_name_en": "Irrelevant Ad",
+      "description": "用户认为广告与自身无关",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - dislike_or_report_mapping - report_no_label -",
+      "display_name_en": "Report — Unspecified",
+      "description": "用户举报，未提供具体原因",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - too_many_ads -  -",
+      "display_name_en": "Too Many Ads",
+      "description": "用户认为广告数量过多",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_sexual -",
+      "display_name_en": "Sexual Content — Dislike",
+      "description": "用户因性相关内容点踩",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - subjectively_dislike -  -",
+      "display_name_en": "Subjective Dislike",
+      "description": "用户主观不喜欢，未指明具体风险",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_other_issues -",
+      "display_name_en": "Other Dislike Reason",
+      "description": "其他点踩原因",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_misleading -",
+      "display_name_en": "Misleading Ad — Dislike",
+      "description": "用户因认为广告有误导性而点踩",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "other - product_experience -  -",
+      "display_name_en": "Product Experience",
+      "description": "产品体验相关反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - report_reason_as_spam -",
+      "display_name_en": "Spam — Report",
+      "description": "用户以垃圾信息为由举报",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - money_or_personal_information_scam",
+      "display_name_en": "Money / Personal Data Scam",
+      "description": "涉及金钱或个人信息诈骗的标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - subjectively_considered_false",
+      "display_name_en": "Perceived False Content",
+      "description": "用户主观认为内容不实",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - sexual_related_content -",
+      "display_name_en": "Sexual Content",
+      "description": "性相关内容标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_brands_creator -",
+      "display_name_en": "Brand / Creator Dislike",
+      "description": "用户不喜欢该品牌或创作者",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - pangle_ads - dislike_too_many_ads",
+      "display_name_en": "Pangle — Too Many Ads",
+      "description": "Pangle 广告数量过多的反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_other_issues -  -",
+      "display_name_en": "Other Dislike Reason",
+      "description": "其他点踩原因",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - unsure_sexual_related_content -",
+      "display_name_en": "Possible Sexual Content",
+      "description": "疑似性相关内容，保留不确定性",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "other - after-sales_experience -  -",
+      "display_name_en": "After-sales Experience",
+      "description": "售后体验相关反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_secondary_sexual -",
+      "display_name_en": "Sexual Content — Secondary Label",
+      "description": "性相关内容的 secondary 标签，具体含义待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_secondary_misleading -",
+      "display_name_en": "Misleading Ad — Secondary Label",
+      "description": "误导广告的 secondary 标签，具体含义待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "other - other_no_dislike_reason -  -",
+      "display_name_en": "Other — No Dislike Reason",
+      "description": "其他反馈，未提供点踩原因",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - other_deceptive_content",
+      "display_name_en": "Other Deceptive Content",
+      "description": "其他欺骗性内容标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "other - other_issues -  -",
+      "display_name_en": "Other Issues",
+      "description": "其他问题",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - copyright_infringement -",
+      "display_name_en": "Copyright Infringement",
+      "description": "版权侵权标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - performance_promise",
+      "display_name_en": "Performance Claims",
+      "description": "效果承诺相关标签，承诺类型待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - distasteful_content -",
+      "display_name_en": "Distasteful Content",
+      "description": "令人反感的内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - political_related - unsure_political_content",
+      "display_name_en": "Possible Political Content",
+      "description": "疑似政治内容，保留不确定性",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - pangle_ads - dislike_clickbait",
+      "display_name_en": "Pangle — Clickbait",
+      "description": "Pangle 标题党或诱导点击反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - shop_ads - dislike_product",
+      "display_name_en": "Shop — Product Dislike",
+      "description": "用户不喜欢商品",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_no_label -  -",
+      "display_name_en": "Dislike — Unspecified",
+      "description": "用户点踩，未提供具体原因",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_nolabel -  -",
+      "display_name_en": "Dislike — Unspecified",
+      "description": "用户点踩，未提供具体原因；原始字段拼写变体",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - offensive_content - report_other_offensive_content",
+      "display_name_en": "Offensive Content — Report",
+      "description": "用户举报其他冒犯性内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - shop_ads - dislike_category",
+      "display_name_en": "Shop — Category Dislike",
+      "description": "用户不喜欢商品类别",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - pangle_ads - dislike_duplicated_ads",
+      "display_name_en": "Pangle — Repeated Ads",
+      "description": "Pangle 广告重复出现的反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - report_no_label -  -",
+      "display_name_en": "Report — Unspecified",
+      "description": "用户举报，未提供具体原因",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - counterfeit_products",
+      "display_name_en": "Counterfeit Products",
+      "description": "欺骗性内容路径下的假冒产品标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - report_other_issues -",
+      "display_name_en": "Other Report Reason",
+      "description": "其他举报原因",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - pangle_ads - dislike_content_cutoff",
+      "display_name_en": "Pangle — Cut-off Content",
+      "description": "Pangle 广告内容显示不完整",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - unsure_violence -",
+      "display_name_en": "Possible Violence",
+      "description": "疑似暴力内容，保留不确定性",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - uncivilized_behavior -",
+      "display_name_en": "Uncivil Behavior",
+      "description": "不文明行为标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "irrelevant_negative_feedback - subjective_comments_to_trending_events -  -",
+      "display_name_en": "Trending-event Commentary",
+      "description": "热门事件主观评论，原标签归为无关负反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - prohibited_or_restricted_products - other_prohibited_or_restricted_products",
+      "display_name_en": "Other Restricted Products",
+      "description": "其他禁止或限制商品标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - illegal_content - illegal_loan_or_loan_shark",
+      "display_name_en": "Illegal Lending / Loan Sharks",
+      "description": "非法贷款或高利贷标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - gambling_related_content -",
+      "display_name_en": "Gambling Content",
+      "description": "赌博相关内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - pangle_ads - dislike_lowresolution_images",
+      "display_name_en": "Pangle — Low-resolution Images",
+      "description": "Pangle 图片清晰度低",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - political_related - political_content",
+      "display_name_en": "Political Content",
+      "description": "政治相关内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - offensive_content - report_discrimination",
+      "display_name_en": "Discrimination — Report",
+      "description": "用户举报歧视内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - infringement - brand_infringement",
+      "display_name_en": "Brand Infringement",
+      "description": "品牌侵权标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - violence -",
+      "display_name_en": "Violence",
+      "description": "暴力内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - aigc_related_content",
+      "display_name_en": "AI-generated Content",
+      "description": "AI 生成内容相关标签，本身不等于违规",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - pangle_ads - dislike_choppyvideo_or_blankscreen",
+      "display_name_en": "Pangle — Playback / Blank Screen",
+      "description": "Pangle 视频卡顿或黑屏",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - ads_mismatch_interests - dislike_irrelevant -",
+      "display_name_en": "Irrelevant Ad",
+      "description": "兴趣不匹配路径下的无关广告反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "-  -  -",
+      "display_name_en": "Unspecified Semantic Label",
+      "description": "全为空占位符的标签路径，区别于空数组",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - horror -",
+      "display_name_en": "Horror Content",
+      "description": "恐怖内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - religious_content -",
+      "display_name_en": "Religious Content",
+      "description": "宗教相关内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - biolink_related",
+      "display_name_en": "Bio Link Content",
+      "description": "Bio Link 相关标签，具体业务含义待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "ads_delivery_issues - ads_mismatch_interests - dislike_brands_creator -",
+      "display_name_en": "Brand / Creator Dislike",
+      "description": "兴趣不匹配路径下的品牌或创作者不喜好",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_inappropriate -",
+      "display_name_en": "Inappropriate Ad — Dislike",
+      "description": "用户因认为广告不适宜而点踩",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - offensive_content - report_children_related_content",
+      "display_name_en": "Child-related Content — Report",
+      "description": "用户举报儿童相关内容，具体风险含义待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - drugs_related_content -",
+      "display_name_en": "Drug-related Content",
+      "description": "药物或毒品相关内容，具体范围待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - offensive_content - other_offensive_content",
+      "display_name_en": "Other Offensive Content",
+      "description": "其他冒犯性内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - search_ads - dislike",
+      "display_name_en": "Search — Dislike",
+      "description": "搜索广告点踩，未指明具体原因",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - report_reason_as_spam -  -",
+      "display_name_en": "Spam — Report",
+      "description": "以垃圾信息为由举报",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - prohibited_or_restricted_products - body_harm_products",
+      "display_name_en": "Harmful Products",
+      "description": "可能造成身体伤害的商品，具体范围待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - underage -",
+      "display_name_en": "Underage-related Content",
+      "description": "未成年人相关标签，具体风险含义待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - dislike_or_report_mapping - organic - sexual",
+      "display_name_en": "Sexual Content — Organic",
+      "description": "Organic 路径下的性相关内容反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_inappropriate -  -",
+      "display_name_en": "Inappropriate Ad — Dislike",
+      "description": "用户因认为广告不适宜而点踩",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_low_quality -",
+      "display_name_en": "Low-quality Ad — Dislike",
+      "description": "用户因认为广告质量低而点踩",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - offensive_content - discrimination",
+      "display_name_en": "Discrimination",
+      "description": "歧视内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - shop_ads - dislike_lowquality",
+      "display_name_en": "Shop — Low Quality",
+      "description": "商品广告低质量反馈，具体质量对象待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - marketing_content - infringement - counterfeit",
+      "display_name_en": "Counterfeit Goods",
+      "description": "侵权路径下的假冒商品标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - exaggerated_description",
+      "display_name_en": "Exaggerated Claims",
+      "description": "夸大描述标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - infringement - others",
+      "display_name_en": "Other Infringement",
+      "description": "其他侵权标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - political_related - other_political_content",
+      "display_name_en": "Other Political Content",
+      "description": "其他政治相关内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - shop_ads - dislike_already_purchased",
+      "display_name_en": "Shop — Already Purchased",
+      "description": "用户已购买该商品",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - search_ads - dislike_unrelated",
+      "display_name_en": "Search — Irrelevant Ad",
+      "description": "搜索广告与查询不相关",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - dislike_or_report_mapping - organic - other",
+      "display_name_en": "Other Feedback — Organic",
+      "description": "Organic 路径下的其他反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_low_quality -  -",
+      "display_name_en": "Low-quality Ad — Dislike",
+      "description": "低质量广告点踩",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - search_ads - dislike_inappropriate",
+      "display_name_en": "Search — Inappropriate Ad",
+      "description": "搜索广告不适宜反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - infringement - organization_infirngement",
+      "display_name_en": "Organization Infringement",
+      "description": "机构侵权标签，原字段拼写为 infirngement，权利范围待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - medical_misinformation",
+      "display_name_en": "Medical Misinformation",
+      "description": "医疗错误信息标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - offensive_content - report_bullying_and_harassment",
+      "display_name_en": "Bullying / Harassment — Report",
+      "description": "用户举报霸凌或骚扰内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - dislike_or_report_mapping - organic - fraud",
+      "display_name_en": "Fraud — Organic",
+      "description": "Organic 路径下的诈骗反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - ad_format_issue - other_ad_format_issues",
+      "display_name_en": "Other Ad Format Issues",
+      "description": "其他广告格式问题",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - unsuitable_for_teenagers -  -",
+      "display_name_en": "Unsuitable for Teens",
+      "description": "不适合青少年的内容或广告",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - search_ads - dislike_unauthorized",
+      "display_name_en": "Search — Unauthorized Content",
+      "description": "搜索广告未授权内容反馈，授权范围待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - marketing_content - ad_format_issue - broken_landing_page",
+      "display_name_en": "Broken Landing Page",
+      "description": "落地页失效或无法正常访问",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - political_related - incident_events",
+      "display_name_en": "Incident-related Content",
+      "description": "事件相关政治内容，事件范围待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - search_ads - dislike_outdated",
+      "display_name_en": "Search — Outdated Content",
+      "description": "搜索广告内容过时",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - copyright_infringement - other_infringement",
+      "display_name_en": "Other Copyright Infringement",
+      "description": "版权路径下的其他侵权标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - clickbait_related_content",
+      "display_name_en": "Clickbait Content",
+      "description": "诱导点击相关内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - anxiety_trigger -",
+      "display_name_en": "Anxiety-inducing Content",
+      "description": "可能引起焦虑的内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - dislike_disgusting -",
+      "display_name_en": "Disgusting Content — Dislike",
+      "description": "用户因反感或厌恶内容而点踩",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - dislike_or_report_mapping - organic - violance",
+      "display_name_en": "Violence — Organic",
+      "description": "Organic 路径下的暴力反馈；原字段拼写为 violance",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - illegal_content - ilegal_loan_or_loan_shark",
+      "display_name_en": "Illegal Lending / Loan Sharks",
+      "description": "非法贷款或高利贷标签；原字段拼写为 ilegal",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - search_ads - dislike_others",
+      "display_name_en": "Search — Other Dislike Reason",
+      "description": "搜索广告其他点踩原因",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - copyright_infringement - video_or_music_infringement",
+      "display_name_en": "Video / Music Infringement",
+      "description": "视频或音乐侵权标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - dislike_or_report_mapping - organic - minor",
+      "display_name_en": "Minor-related Content — Organic",
+      "description": "Organic 路径下的未成年人相关反馈，具体风险待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - marketing_content - infringement - celebrity_infringement",
+      "display_name_en": "Celebrity Infringement",
+      "description": "名人相关侵权标签，权利范围待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - violence_horror_dangerous_activity - violence",
+      "display_name_en": "Violence",
+      "description": "暴力、恐怖与危险行为路径下的暴力标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - dislike_or_report_mapping - organic - offensive",
+      "display_name_en": "Offensive Content — Organic",
+      "description": "Organic 路径下的冒犯性内容反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - low_quality_content -  -",
+      "display_name_en": "Low-quality Content",
+      "description": "低质量内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - illegal_content - report_other_illegal_content",
+      "display_name_en": "Illegal Content — Report",
+      "description": "用户举报其他违法内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "non_negative_feedback -  -  -",
+      "display_name_en": "Non-negative Feedback",
+      "description": "非负反馈标签，不等于无风险结论",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - cheating_act",
+      "display_name_en": "Cheating-related Content",
+      "description": "作弊或欺骗行为标签，具体业务含义待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "ads_delivery_issues - personalized_content - unsuitable_for_teenagers -",
+      "display_name_en": "Unsuitable for Teens",
+      "description": "个性化内容路径下的不适合青少年标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - shop_ads - dislike_fake_product",
+      "display_name_en": "Shop — Suspected Fake Product",
+      "description": "商品广告假冒产品反馈，不作已证实判断",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - none_existing_function",
+      "display_name_en": "Non-existent Features",
+      "description": "宣传不存在的功能",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - fraud - employment_scam",
+      "display_name_en": "Employment Scam",
+      "description": "求职或招聘诈骗标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - fraud - watch_to_earn",
+      "display_name_en": "Watch-to-earn Scheme",
+      "description": "观看赚钱模式相关诈骗标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - prohibited_or_restricted_products - adult_products_or_services",
+      "display_name_en": "Adult Products / Services",
+      "description": "成人商品或服务标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - dislike_or_report_mapping - organic - prohibit",
+      "display_name_en": "Prohibited Content — Organic",
+      "description": "Organic 路径下的禁止内容反馈，具体范围待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - marketing_content - fraud - investment",
+      "display_name_en": "Investment Fraud",
+      "description": "投资相关诈骗标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - violence_horror_dangerous_activity - horror",
+      "display_name_en": "Horror Content",
+      "description": "暴力、恐怖与危险行为路径下的恐怖标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - dislike_or_report_mapping - organic - political",
+      "display_name_en": "Political Content — Organic",
+      "description": "Organic 路径下的政治内容反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - dangerous_activity -",
+      "display_name_en": "Dangerous Activities",
+      "description": "危险行为标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - deceptive_content - get_rich_quick_scheme",
+      "display_name_en": "Get-rich-quick Scheme",
+      "description": "快速致富骗局标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - illegal_content - other_illegal_content",
+      "display_name_en": "Other Illegal Content",
+      "description": "其他违法内容",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - copyright_infringement - portrait_infringement",
+      "display_name_en": "Portrait Rights Infringement",
+      "description": "肖像权相关侵权标签，权利范围待确认",
+      "mapping_status": "pending_confirmation"
+    },
+    {
+      "original_label": "content_issues - marketing_content - ad_format_issue -",
+      "display_name_en": "Ad Format Issues",
+      "description": "广告格式问题，未提供更细标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "ads_delivery_issues - dislike_or_report_mapping - search_ads - dislike_language_issues",
+      "display_name_en": "Search — Language Issues",
+      "description": "搜索广告语言问题",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - marketing_content - copyright_infringement - creative_plagiarism",
+      "display_name_en": "Creative Plagiarism",
+      "description": "创意抄袭标签",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "other - irrelevant_negative_feedback - other_irrelevant_negative_feedback -",
+      "display_name_en": "Other Irrelevant Feedback",
+      "description": "其他无关负反馈",
+      "mapping_status": "draft"
+    },
+    {
+      "original_label": "content_issues - sensitive_content - political_related - terrorism_related_content",
+      "display_name_en": "Terrorism-related Content",
+      "description": "恐怖主义相关内容标签",
+      "mapping_status": "draft"
+    }
+  ]
+}

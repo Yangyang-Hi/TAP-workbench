@@ -1,0 +1,66 @@
+{
+  "version": 2,
+  "status": "confirmed",
+  "period": "2026 Q4",
+  "source": "2026-10-23 用户确认：ET Account-level；ST Brand-level；区域值按用户截图录入",
+  "regions": [
+    {
+      "region": "APAC",
+      "ET": 1000,
+      "ST": 240
+    },
+    {
+      "region": "CNOB",
+      "ET": 1000,
+      "ST": 36
+    },
+    {
+      "region": "EUI",
+      "ET": 1000,
+      "ST": 111
+    },
+    {
+      "region": "JP",
+      "ET": 200,
+      "ST": 76
+    },
+    {
+      "region": "KR",
+      "ET": 100,
+      "ST": 11
+    },
+    {
+      "region": "LATAM",
+      "ET": 306,
+      "ST": 52
+    },
+    {
+      "region": "METAP",
+      "ET": 750,
+      "ST": 180
+    },
+    {
+      "region": "NA",
+      "ET": 1000,
+      "ST": 111
+    },
+    {
+      "region": "Scaled Growth Agency",
+      "ET": 1000,
+      "ST": 0
+    }
+  ],
+  "totals": {
+    "ET": 6356,
+    "ST": 817
+  },
+  "usage_status": "requires_complete_approved_source",
+  "st_usage_unit": "distinct_brand_name",
+  "st_usage_unit_status": "confirmed_by_business",
+  "tht_has_denominator": false,
+  "et_usage_unit": "distinct_account_id",
+  "source_st_brand_total": 816,
+  "warnings": [
+    "ST Brand 配额表总计标注 816，各区域相加为 817；当前按区域原值计算，Global 分母为 817，待业务核对差额 1。"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "base_upload": "10.21 1704.zip",
+  "base_sha256": "c16dc2fa0530398cb286d4680d72652de0f6389d04c84c79f1c3b25f0ace970b",
+  "stage": "1_single_absolute_alert_notification",
+  "changed_existing_files": [
+    "docs/FEISHU_PILOT_GUIDE.md",
+    "app/server-go/casework_identity_test.go",
+    "app/server-go/casework_feishu.go",
+    "app/server-go/handler_casework.gen.go",
+    "app/server-go/casework_test.go",
+    "app/server-go/casework_store.go",
+    "app/server-go/casework_identity.go",
+    "app/server-go/feishu_test_recipient.go",
+    "app/frontend/vitest.workbench.config.ts",
+    "app/api/api.yaml",
+    "app/frontend/src/api/client.gen.ts",
+    "app/frontend/src/pages/home/index.test.tsx",
+    "app/frontend/src/pages/governance/casework.test.tsx",
+    "app/frontend/src/pages/governance/casework.tsx",
+    "skills/tap-governance-workbench-v6-live-aime-app-cli/references/api-routes.index.json",
+    "skills/tap-governance-workbench-v6-live-aime-app-cli/references/api-routes.details.json"
+  ],
+  "added_files": [
+    "README_NOTIFY_FIRST.md",
+    "docs/NOTIFY_CHANGE_MANIFEST.json",
+    "docs/EMAIL_MAPPING_BOT_HANDOFF_20261021.md",
+    "app/server-go/casework_notification_preview.go",
+    "app/server-go/casework_notification_pipeline_test.go"
+  ],
+  "quota_1704_changes_preserved": true,
+  "data_and_rule_configuration_unchanged": true,
+  "local_go_tests": "PASS",
+  "local_go_vet": "PASS",
+  "local_backend_build": "PASS",
+  "workbench_typecheck": "PASS",
+  "workbench_ui_tests": {
+    "files": 4,
+    "passed": 24
+  },
+  "aime_native_frontend_build": "REQUIRED_IN_AIME_PRIVATE_DEPENDENCY_ENVIRONMENT",
+  "real_sheet_read": "NOT_EXECUTED",
+  "real_feishu_send": "NOT_EXECUTED",
+  "real_delivery_confirmation": "NOT_EXECUTED"
+}

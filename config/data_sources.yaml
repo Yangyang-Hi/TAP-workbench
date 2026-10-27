@@ -1,0 +1,412 @@
+version: 6
+aeolus:
+  host_env: AEOLUS_HOST
+  auth: {client_id_env: AEOLUS_CLIENT_ID, client_secret_env: AEOLUS_CLIENT_SECRET, jwt_path: /aeolus/api/v3/openapi/jwtToken, auth_header: Authorization, auth_scheme: Bearer}
+  query_path: ""
+sources:
+  tap_account: &account_source
+    kind: aggregate
+    grain: account_date
+    consumers: [overview]
+    enabled: true
+    label: TAP Account Detail
+    identity: {app_id: 800414, sid: 1280034, rid: 2833031, legacy_rid: 2831288, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [date, region, client_tier]
+    aggregation: {account_count: distinct_count}
+    time_semantics: date
+    window_audit: {report_id: 2832415, hard_limit: 50000, expected_parent_windows: 57, verified_child_windows: 271, expected_execution_windows: 325, concurrency: 5, timeout_seconds: 120, max_attempts: 3}
+    fields: &account_fields
+      p_date_filter: {dim_met_id: "10000002555291", unique_id: "260928142356223", source_name: p_date, expected_type: date, nullable: false, meaning: "账户分区过滤日期", status: confirmed}
+      p_date: {dim_met_id: "10000012645655", unique_id: "260928143026930", source_name: "p_date[dm_integrity_experience_advertiser_tap_stats_di_utc0]", expected_type: string, nullable: false, meaning: "账户业务日期", status: confirmed}
+      account_id: {dim_met_id: "10000012645657", unique_id: "m_accounts", source_name: "account_id[dm_integrity_experience_advertiser_tap_stats_di_utc0]", expected_type: decimal_string, nullable: false, meaning: "TAP账户ID", status: confirmed}
+      advertiser_id: {dim_met_id: "10000012645656", unique_id: "m_rows", source_name: "advertiser_id[dm_integrity_experience_advertiser_tap_stats_di_utc0]", expected_type: decimal_string, nullable: false, meaning: "广告主ID", status: confirmed}
+      client_tier: {dim_met_id: "10000012645665", unique_id: "260928142356225", source_name: tier_v3_name, expected_type: string, nullable: false, meaning: "客户层级", status: confirmed}
+      region: {dim_met_id: "10000014496228", unique_id: "260928142356224", source_name: account_final_region, expected_type: string, nullable: false, meaning: "账户最终区域", status: confirmed}
+      register_country: {dim_met_id: "10000002615432", unique_id: "260928143026940", source_name: register_country, expected_type: string, nullable: true, meaning: "注册国家递归拆分字段", status: confirmed}
+      perf_direct_sales_team_region: {dim_met_id: "10000002615439", unique_id: "260928142357360", source_name: perf_direct_sales_team_region, expected_type: string, nullable: true, meaning: "直客销售区域递归拆分字段", status: confirmed}
+      perf_agency_sales_team_region: {dim_met_id: "10000002615435", unique_id: "260928142357361", source_name: perf_agency_sales_team_region, expected_type: string, nullable: true, meaning: "代理销售区域递归拆分字段", status: confirmed}
+      is_self_serve: {dim_met_id: "10000002615427", unique_id: "260928142408377", source_name: is_self_serve, expected_type: integer, nullable: true, meaning: "自助标识递归拆分字段", status: confirmed}
+      advertiser_status: {dim_met_id: "10000002615431", unique_id: "260928142408378", source_name: advertiser_status, expected_type: integer, nullable: true, meaning: "广告主状态递归拆分字段", status: confirmed}
+      advertiser_create_month: {dim_met_id: "10000002615488", unique_id: "260928143143819", source_name: advertiser_create_date, expected_type: date, nullable: true, meaning: "广告主创建月份递归拆分字段", status: confirmed}
+  client_account_detail:
+    <<: *account_source
+    kind: detail
+    consumers: [customer_monitoring, tier_membership, alert_rules]
+    fields: *account_fields
+  submission: &submission_source
+    kind: aggregate
+    grain: ticket
+    consumers: [overview, submission_summary]
+    enabled: true
+    label: TAP Submission Ticket Detail
+    identity: {app_id: 800414, sid: 1198629, rid: 2933760, tid: 583, dashboard_id: 626779, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [date, region, client_tier, program_type]
+    aggregation: {ticket_id: distinct_count}
+    time_semantics: create_date
+    fields: &submission_fields
+      create_date: {dim_met_id: "10000000545109", unique_id: "260928143142118", source_name: create_date, expected_type: date_string, nullable: false, meaning: "提报创建日期", status: confirmed}
+      ticket_id: {dim_met_id: "10000000536470", unique_id: "260928143142119", source_name: ticket_id, expected_type: decimal_string, nullable: false, meaning: "提报单ID", status: confirmed}
+      account_id: {dim_met_id: "10000000536486", unique_id: "260928143142120", source_name: account_id, expected_type: decimal_string, optional: true, nullable: true, meaning: "账户ID", status: confirmed}
+      account_name: {dim_met_id: "", unique_id: "", source_name: account_name, expected_type: string, optional: true, nullable: true, meaning: "客户名称；需补充真实字段ID或上游关联", status: pending}
+      advertiser_id: {dim_met_id: "10000000536485", unique_id: "260928143142121", source_name: advertiser_id, expected_type: decimal_string, nullable: false, meaning: "广告主ID及客户关联键", status: confirmed}
+      type_name: {dim_met_id: "10000000536474", unique_id: "260928143142122", source_name: type_name, expected_type: string, nullable: false, meaning: "申请类型", status: confirmed}
+      protection_program_name: {dim_met_id: "10000000536519", unique_id: "260928143142123", source_name: protection_program_name, expected_type: string, nullable: true, meaning: "保护项目名称", status: confirmed}
+      final_result: {dim_met_id: "10000000536562", unique_id: "260928143142124", source_name: final_result, expected_type: string, nullable: true, meaning: "最终审批结果", status: confirmed}
+      region: {dim_met_id: "10000000340543", unique_id: "260928143142125", source_name: region, expected_type: string, nullable: true, meaning: "提报区域", status: confirmed}
+      client_tier: {dim_met_id: "10000013117285", unique_id: "260928143142126", source_name: tier_v3_name, expected_type: string, nullable: true, meaning: "客户层级", status: confirmed}
+      submitter: {dim_met_id: "10000000536479", unique_id: "260928143142127", source_name: question_user_name, expected_type: string, nullable: true, meaning: "提报人", status: confirmed}
+      protection_starttime: {dim_met_id: "10000000536517", unique_id: "260928143142128", source_name: protection_starttime, expected_type: datetime, nullable: true, meaning: "保护开始时间", status: confirmed}
+      protection_endtime: {dim_met_id: "10000000536518", unique_id: "260928143142129", source_name: protection_endtime, expected_type: datetime, nullable: true, meaning: "保护结束时间", status: confirmed}
+  submission_detail:
+    <<: *submission_source
+    kind: detail
+    consumers: [quota, tier_membership, protection, alert_rules, customer_monitoring]
+    fields: *submission_fields
+  p0_risk: &risk_source
+    kind: aggregate
+    grain: client_date
+    consumers: [overview]
+    enabled: true
+    label: Client CCR Detail
+    identity: {app_id: 800414, sid: 1139137, rid: 2831291, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [date, region, client_tier]
+    aggregation: {p0_ccr: ratio_of_sums, p1_ccr: ratio_of_sums, p0_nfs: pending_contract, p1_nfs: pending_contract}
+    time_semantics: date
+    fields: &risk_fields
+      p_date: {dim_met_id: "10000003854360", unique_id: "260928142713270", source_name: p_date, expected_type: date, nullable: false, meaning: "风险事实日期", status: confirmed}
+      account_id: {dim_met_id: "10000000032791", unique_id: "260928142713271", source_name: account_id, expected_type: decimal_string, nullable: false, meaning: "账户ID", status: confirmed}
+      advertiser_id: {dim_met_id: "10000000033001", unique_id: "260928142713272", source_name: advertiser_id, expected_type: decimal_string, nullable: false, meaning: "广告主ID", status: confirmed}
+      region: {dim_met_id: "10000001364619", unique_id: "260928142713273", source_name: Sales Region, expected_type: string, nullable: true, meaning: "销售区域", status: confirmed}
+      client_tier: {dim_met_id: "10000013113546", unique_id: "260928142713274", source_name: tier_v3_name, expected_type: string, nullable: true, meaning: "客户层级", status: confirmed}
+      p0_ccr_num: {dim_met_id: "10000000845125", unique_id: "260928142713275", source_name: P0 CCR numerator, expected_type: number, nullable: true, meaning: "P0 CCR分子", status: confirmed}
+      p1_ccr_num: {dim_met_id: "10000000845126", unique_id: "260928142713276", source_name: P1 CCR numerator, expected_type: number, nullable: true, meaning: "P1 CCR分子", status: confirmed}
+      ccr_den: {dim_met_id: "1700017910817", unique_id: "260928142713277", source_name: CCR denominator - Total Show Counts, expected_type: number, nullable: true, meaning: "CCR分母总展示量", status: confirmed}
+      p0_ccr: {dim_met_id: "10000000845130", unique_id: "260928142713278", source_name: P0 Content CCR, expected_type: number, optional: true, nullable: true, meaning: "源预聚合P0 CCR（仅诊断）", status: confirmed}
+      p1_ccr: {dim_met_id: "10000000845131", unique_id: "260928142713279", source_name: P1 Content CCR, expected_type: number, optional: true, nullable: true, meaning: "源预聚合P1 CCR（仅诊断）", status: confirmed}
+  client_risk_detail:
+    <<: *risk_source
+    kind: detail
+    consumers: [customer_monitoring, protection, alert_rules]
+    fields: *risk_fields
+  client_ccr_nfs_detail: &ccr_nfs_source
+    kind: aggregate
+    grain: client_date
+    consumers: [overview, customer_monitoring, protection, alert_rules]
+    enabled: true
+    label: TAP Client CCR+NFS Detail - Aime
+    identity: {app_id: 800414, sid: 1139137, rid: 2832374, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [date, region, client_tier]
+    aggregation: {p0_nfs: sum_nullable, total_show_count: sum, dynamic_p0_ccr: ratio_of_sums_per_million}
+    time_semantics: date
+    window_audit: {report_id: 2832423, hard_limit: 50000, split_order: [date, region, client_tier, account_id_string_batch]}
+    fields: &ccr_nfs_fields
+      p_date: {dim_met_id: "10000003854360", unique_id: "260928142954087", source_name: p_date, expected_type: date, nullable: false, meaning: "风险事实日期", status: confirmed}
+      account_id: {dim_met_id: "10000000032791", unique_id: "260928142954088", source_name: account_id, expected_type: decimal_string, nullable: false, meaning: "账户ID", status: confirmed}
+      advertiser_id: {dim_met_id: "10000000033001", unique_id: "260928142954089", source_name: advertiser_id, expected_type: decimal_string, nullable: false, meaning: "广告主ID", status: confirmed}
+      region: {dim_met_id: "10000001364619", unique_id: "260928142954090", source_name: Sales Region, expected_type: string, nullable: true, meaning: "销售区域", status: confirmed}
+      client_tier: {dim_met_id: "10000013113546", unique_id: "260928142954091", source_name: tier_v3_name, expected_type: string, nullable: true, meaning: "客户层级", status: confirmed}
+      p0_nfs: {dim_met_id: "10000000032674", unique_id: "260928142954092", source_name: "P0 Negative Feedback Show", expected_type: number, nullable: true, meaning: "P0负反馈展示量；NULL保持NULL", status: confirmed}
+      total_show_count: {dim_met_id: "10000000032545", unique_id: "260928142954093", source_name: "Total Show Counts", expected_type: number, nullable: true, meaning: "总展示量", status: confirmed}
+      dynamic_p0_ccr: {dim_met_id: "10000000032693", unique_id: "260928142954094", source_name: "Dynamic P0 Content CCR", expected_type: number, optional: true, nullable: true, meaning: "源指标，仅诊断；业务口径按比值之和每百万计算", status: confirmed}
+  et_current_ccr_nfs:
+    <<: *ccr_nfs_source
+    kind: detail
+    label: ET/ST Authoritative Account CCR+NFS
+    identity: {app_id: 800414, sid: 1139137, rid: 2979783, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    grain: account_week
+    supported_dimensions: [date, account_id]
+    query_profile: {filters: [p_date]}
+    aggregation: {p0_nfs: authoritative_nullable, dynamic_p0_ccr: authoritative_ppm_nullable}
+    fields: &rid_2979783_fields
+      p_date: {dim_met_id: "10000003854360", unique_id: "250723135348011", source_name: p_date, expected_type: date, optional: true, nullable: true, status: confirmed}
+      account_id: {dim_met_id: "10000000032791", source_name: account_id, expected_type: decimal_string, nullable: false, status: confirmed}
+      p0_nfs: {dim_met_id: "10000000032674", source_name: "P0: Negative Feedback Show", expected_type: number, nullable: true, status: confirmed}
+      dynamic_p0_ccr: {dim_met_id: "10000000032693", source_name: "Dynamic P0 Content CCR", expected_type: number, nullable: true, status: confirmed}
+  account_current_revenue:
+    kind: detail
+    grain: account_week
+    consumers: [customer_monitoring, alert_rules]
+    enabled: true
+    label: ET/ST Authoritative Account Revenue
+    identity: {app_id: 800414, sid: 1139137, rid: 2980054, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [date, account_id]
+    time_semantics: date
+    query_profile: {filters: [p_date]}
+    aggregation: {revenue: authoritative_nullable}
+    fields:
+      p_date: {dim_met_id: "10000003854360", unique_id: "250723135348011", source_name: p_date, expected_type: date, optional: true, nullable: true, status: confirmed}
+      account_id: {dim_met_id: "1700017763323", unique_id: "261021155920059", source_name: account_id, expected_type: decimal_string, nullable: false, status: confirmed}
+      revenue: {dim_met_id: "10000000593604", source_name: Revenue, expected_type: number, nullable: true, status: confirmed}
+  advertiser_current_ccr_nfs:
+    <<: *ccr_nfs_source
+    kind: detail
+    label: ET/ST Authoritative Account-Advertiser CCR+NFS Detail
+    identity: {app_id: 800414, sid: 1139137, rid: 2942519, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    grain: account_advertiser_week
+    supported_dimensions: [date, account_id, advertiser_id]
+    query_profile: {filters: [p_date, is_online]}
+    aggregation: {p0_nfs: sum_nullable, dynamic_p0_ccr: authoritative_ppm_nullable}
+    fields: &rid_2942519_fields
+      p_date: {dim_met_id: "10000003854360", unique_id: "250723135348011", source_name: p_date, expected_type: date, nullable: false, status: confirmed}
+      is_online: {dim_met_id: "10000000032606", unique_id: "260120113653190", source_name: is_online, expected_type: integer, nullable: false, status: confirmed}
+      account_id: {dim_met_id: "10000000032791", unique_id: "261021160114061", source_name: account_id, expected_type: decimal_string, nullable: false, status: confirmed}
+      advertiser_id: {dim_met_id: "10000000033001", unique_id: "261021160114441", source_name: advertiser_id, expected_type: decimal_string, nullable: false, status: confirmed}
+      p0_nfs: {dim_met_id: "10000000032674", unique_id: "260325121636716", source_name: "P0: Negative Feedback Show", expected_type: number, nullable: true, status: confirmed}
+      dynamic_p0_ccr: {dim_met_id: "10000000032693", unique_id: "260325121636679", source_name: "Dynamic P0 Content CCR", expected_type: number, nullable: true, status: confirmed}
+  advertiser_reported_reasons:
+    kind: detail
+    grain: account_advertiser_single_label_window
+    consumers: [customer_monitoring, alert_rules]
+    enabled: true
+    contract_status: verified
+    contract_note: "RID 3023305 is the authoritative Current-window account-advertiser-label detail; rank by non-null Dynamic P0 Content CCR descending, or by P0 Negative Feedback Show only when all CCR values are null."
+    label: CCR&NFS reason detail
+    identity: {app_id: 800414, sid: 1139137, rid: 3023305, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: advertiser_id}
+    supported_dimensions: [date, account_id, advertiser_id, semantics_label_tier_1_2_3_4]
+    time_semantics: date
+    query_profile: {filters: [p_date], group_by: [account_id, advertiser_id, semantics_label_tier_1_2_3_4], truncation_policy: fail_closed}
+    aggregation: {dynamic_p0_ccr: authoritative_single_label_nullable, p0_nfs: authoritative_single_label_nullable}
+    fields:
+      p_date: {dim_met_id: "10000003854360", unique_id: "250723135348011", source_name: p_date, expected_type: date, nullable: false, status: confirmed}
+      is_online: {dim_met_id: "10000000032606", unique_id: "260120113653190", source_name: is_online, expected_type: integer, nullable: false, status: confirmed}
+      account_id: {dim_met_id: "10000000032791", unique_id: "261021160114061", source_name: account_id, expected_type: decimal_string, nullable: false, status: confirmed}
+      advertiser_id: {dim_met_id: "10000000033001", unique_id: "261021160114441", source_name: advertiser_id, expected_type: decimal_string, nullable: false, status: confirmed}
+      semantics_label_tier_1_2_3_4: {dim_met_id: "10000000250870", unique_id: "261027203554049", source_name: semantics_label_tier_1_2_3_4, expected_type: string, nullable: true, meaning: "arrayJoin 后单个完整标签路径", status: confirmed}
+      p0_nfs: {dim_met_id: "10000000032674", unique_id: "260325121636716", source_name: "P0: Negative Feedback Show", expected_type: number, nullable: true, status: confirmed}
+      dynamic_p0_ccr: {dim_met_id: "10000000032693", unique_id: "260325121636679", source_name: "Dynamic P0 Content CCR", expected_type: number, nullable: true, status: confirmed}
+  account_advertiser_bridge:
+    kind: detail
+    grain: account_advertiser_latest_partition
+    consumers: [customer_monitoring, alert_rules]
+    enabled: true
+    label: Account-Adv id
+    identity: {app_id: 800414, sid: 1280034, rid: 2946222, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [account_id, client_tier]
+    query_profile: {latest_partition: true, tier_v3_name: [emerging_trust, strategic_trust], exclude_advertiser_id: "0"}
+    expected_pair_count: 67239
+    fields:
+      account_id: {dim_met_id: "10000012645657", source_name: "account_id[dm_integrity_experience_advertiser_tap_stats_di_utc0]", expected_type: decimal_string, nullable: false, status: confirmed}
+      account_name: {source_name: account_name, expected_type: string, nullable: true, status: confirmed}
+      advertiser_id: {dim_met_id: "10000012645656", source_name: "advertiser_id[dm_integrity_experience_advertiser_tap_stats_di_utc0]", expected_type: decimal_string, nullable: false, status: confirmed}
+      advertiser_name: {source_name: advertiser_name, expected_type: string, nullable: true, status: confirmed}
+      client_tier: {dim_met_id: "10000012645665", source_name: tier_v3_name, expected_type: string, nullable: false, status: confirmed}
+  account_advertiser_names:
+    kind: detail
+    grain: account_advertiser_latest_partition
+    consumers: [customer_monitoring]
+    enabled: true
+    label: Authoritative ET Account-Advertiser Names
+    identity: {app_id: 800414, sid: 1280034, rid: 3052502, tid: 6236, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [account_id]
+    query_profile: {latest_partition: true, exclude_advertiser_id: "0"}
+    fields:
+      account_name: {dim_met_id: "10000002615426", unique_id: "261027192638057", source_name: account_name, expected_type: string, nullable: true, status: confirmed}
+      account_id: {dim_met_id: "10000012645657", unique_id: "261027192638088", source_name: "account_id[dm_integrity_experience_advertiser_tap_stats_di_utc0]", expected_type: decimal_string, nullable: false, status: confirmed}
+      advertiser_id: {dim_met_id: "10000012645656", unique_id: "261027192638194", source_name: "advertiser_id[dm_integrity_experience_advertiser_tap_stats_di_utc0]", expected_type: decimal_string, nullable: false, status: confirmed}
+      advertiser_name: {dim_met_id: "10000002615436", unique_id: "261027192638209", source_name: advertiser_name, expected_type: string, nullable: true, status: confirmed}
+  weekly_pair_ccr_nfs:
+    <<: *ccr_nfs_source
+    kind: detail
+    grain: account_advertiser_week
+    label: Authoritative Weekly Pair CCR+NFS
+    identity: {app_id: 800414, sid: 1139137, rid: 2942519, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [date, account_id, advertiser_id]
+    query_profile: {filters: [p_date, is_online]}
+    aggregation: {p0_nfs: sum_nullable, dynamic_p0_ccr: authoritative_ppm_nullable}
+    fields: *rid_2942519_fields
+  weekly_pair_revenue:
+    kind: detail
+    grain: account_advertiser_week
+    consumers: [customer_monitoring, alert_rules]
+    enabled: true
+    label: Authoritative Weekly Pair Revenue
+    identity: {app_id: 800414, sid: 1139137, rid: 2942918, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [date, account_id, advertiser_id]
+    query_profile: {window: previous_complete_natural_week, join_keys: [account_id, advertiser_id]}
+    aggregation: {revenue: sum_nullable}
+    fields:
+      p_date: {dim_met_id: "10000003854360", source_name: p_date, expected_type: date, nullable: false, status: confirmed}
+      account_id: {dim_met_id: "1700017763323", source_name: "account_id[dwa_integrity_risk_report_creative_stats_di_utc0]", expected_type: decimal_string, nullable: false, status: confirmed}
+      advertiser_id: {dim_met_id: "1700017763319", source_name: "advertiser_id[dwa_integrity_risk_report_creative_stats_di_utc0]", expected_type: decimal_string, nullable: false, status: confirmed}
+      revenue: {dim_met_id: "10000000593604", source_name: "Revenue SUM", expected_type: number, nullable: true, status: confirmed}
+  advertiser_allowlist:
+    kind: detail
+    grain: advertiser_allowlist_membership_scope_unknown
+    consumers: [customer_monitoring, alert_rules]
+    enabled: true
+    label: Advertiser Allowlist (scope contract incomplete)
+    identity: {app_id: 800414, sid: 1139137, rid: 2898676, tid: 1665, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: advertiser_id}
+    supported_dimensions: [advertiser_id]
+    contract_status: conditional
+    contract_note: "RID 2898676 currently exposes no verified Tier or effective-period fields. A hit is informational only; a miss, out-of-scope result, and query failure must remain distinct and never imply a global exemption."
+    aggregation: {advertiser_id: distinct}
+    fields:
+      advertiser_id: {dim_met_id: "10000002832410", unique_id: "260714192036126", source_name: "advertiser_id[dim_integrity_strategy_tianshu_list_df_utc0]", expected_type: decimal_string, nullable: false, status: confirmed}
+  client_ccr_nfs_detail_rows:
+    <<: *ccr_nfs_source
+    kind: detail
+    fields: *ccr_nfs_fields
+  revenue: &revenue_source
+    kind: aggregate
+    grain: client_date
+    consumers: [overview]
+    enabled: true
+    label: Client Revenue Detail
+    identity: {app_id: 800414, sid: 1139137, rid: 2831294, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [date, region, client_tier]
+    aggregation: {revenue: sum}
+    time_semantics: date
+    fields: &revenue_fields
+      p_date: {dim_met_id: "10000003854360", unique_id: "260928142304827", source_name: p_date, expected_type: date, nullable: false, meaning: "收入事实日期", status: confirmed}
+      account_id: {dim_met_id: "1700017763323", unique_id: "260928142304828", source_name: account_id, expected_type: decimal_string, nullable: false, meaning: "账户ID", status: confirmed}
+      advertiser_id: {dim_met_id: "1700017763319", unique_id: "260928142304829", source_name: advertiser_id, expected_type: decimal_string, nullable: false, meaning: "广告主ID", status: confirmed}
+      region: {dim_met_id: "10000001364619", unique_id: "260928142304830", source_name: Sales Region, expected_type: string, nullable: true, meaning: "销售区域", status: confirmed}
+      client_tier: {dim_met_id: "10000013113546", unique_id: "260928142304831", source_name: tier_v3_name, expected_type: string, nullable: true, meaning: "客户层级", status: confirmed}
+      revenue: {dim_met_id: "10000000593604", unique_id: "260928142304832", source_name: Revenue, expected_type: number, nullable: true, meaning: "客户收入，SUM口径", status: confirmed}
+  client_revenue_detail:
+    <<: *revenue_source
+    kind: detail
+    consumers: [customer_monitoring]
+    fields: *revenue_fields
+  approval: &approval_source
+    kind: aggregate
+    grain: client_date
+    consumers: [overview]
+    enabled: true
+    label: Client Approval Detail
+    identity: {app_id: 555138, sid: 642402, rid: 2831296, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [date, region, client_tier]
+    aggregation: {approval_rate: ratio_of_sums}
+    time_semantics: date
+    fields: &approval_fields
+      p_date: {dim_met_id: "1700008351638", unique_id: "260928142408931", source_name: p_date, expected_type: date, nullable: false, meaning: "审核事实日期", status: confirmed}
+      account_id: {dim_met_id: "1700015564717", unique_id: "260928142408932", source_name: account_id, expected_type: decimal_string, nullable: false, meaning: "账户ID", status: confirmed}
+      advertiser_id: {dim_met_id: "1700008351647", unique_id: "260928142408933", source_name: advertiser_id, expected_type: decimal_string, nullable: false, meaning: "广告主ID", status: confirmed}
+      region: {dim_met_id: "1700017263385", unique_id: "260928142408934", source_name: region, expected_type: string, nullable: true, meaning: "审核区域", status: confirmed}
+      client_tier: {dim_met_id: "10000013681491", unique_id: "260928142408935", source_name: tier_v3_name, expected_type: string, nullable: true, meaning: "客户层级", status: confirmed}
+      approval_num: {dim_met_id: "1700011945928", unique_id: "260928142408936", source_name: "# Approval", expected_type: number, nullable: true, meaning: "通过量", status: confirmed}
+      approval_den: {dim_met_id: "1700011601652", unique_id: "260928142408937", source_name: Audited Volume, expected_type: number, nullable: true, meaning: "审核总量", status: confirmed}
+      audit_volume: {dim_met_id: "10000000980774", unique_id: "260928142408938", source_name: Audit Volume, expected_type: number, optional: true, nullable: true, meaning: "补充审核量（仅诊断）", status: confirmed}
+      approval_rate: {dim_met_id: "10000000980772", unique_id: "260928142408939", source_name: Approval Rate, expected_type: number, optional: true, nullable: true, meaning: "源预聚合通过率（仅诊断）", status: confirmed}
+  client_approval_detail:
+    <<: *approval_source
+    kind: detail
+    consumers: [customer_monitoring, alert_rules]
+    fields: *approval_fields
+  protection: &protection_source
+    kind: detail
+    grain: ticket
+    consumers: [protection, customer_monitoring]
+    enabled: true
+    label: Protection Ticket Detail
+    identity: {app_id: 800414, sid: 1198629, rid: 2933751, tid: 583, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: advertiser_id}
+    supported_dimensions: [date, region, client_tier, program_type]
+    aggregation: {ticket_id: distinct_count}
+    time_semantics: create_date
+    fields: &protection_fields
+      create_date: {dim_met_id: "", source_name: create_date}
+      ticket_id: {dim_met_id: "", source_name: ticket_id}
+      account_id: {dim_met_id: "", source_name: account_id, optional: true}
+      advertiser_id: {dim_met_id: "", source_name: advertiser_id}
+      type_name: {dim_met_id: "", source_name: type_name}
+      protection_program_name: {dim_met_id: "", source_name: protection_program_name}
+      final_result: {dim_met_id: "", source_name: final_result}
+      protection_starttime: {dim_met_id: "", source_name: protection_starttime}
+      protection_endtime: {dim_met_id: "", source_name: protection_endtime}
+      region: {dim_met_id: "", source_name: region, optional: true}
+      client_tier: {dim_met_id: "", source_name: tier_v3_name, optional: true}
+  tht_detail:
+    <<: *protection_source
+    fields: *protection_fields
+
+  et_account_list: &et_account_list_source
+    kind: detail
+    grain: approved_et_account
+    consumers: [customer_monitoring]
+    enabled: true
+    label: ET Approved Account List
+    identity: {app_id: 800414, dashboard_id: 626779, sid: 1198629, rid: 2933760, tid: 583, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    supported_dimensions: [date, region, program_type]
+    time_semantics: create_date
+    query_profile:
+      group_by: [submitter, region, account_id, create_date, create_time, final_result]
+      filters: [create_date, type_name, final_result]
+    fields: &et_account_list_fields
+      submitter: {dim_met_id: "10000000536479", unique_id: "260907113221317", source_name: question_user_name, expected_type: string, nullable: true}
+      region: {dim_met_id: "10000016047833", unique_id: "261021115949127", source_name: region, expected_type: string, nullable: true}
+      account_id: {dim_met_id: "10000000536486", unique_id: "261015231407179", source_name: account_id, expected_type: decimal_string}
+      account_name: {dim_met_id: "10000000915461", unique_id: "261021115949563", source_name: "account_name[dm_advertiser_base_info_df_utc0_1]", expected_type: string, nullable: true}
+      advertiser_id: {dim_met_id: "10000000536485", unique_id: "261021115949308", source_name: advertiser_id, expected_type: decimal_string, nullable: true}
+      advertiser_name: {dim_met_id: "10000000915459", unique_id: "261021115949273", source_name: "advertiser_name[dm_advertiser_base_info_df_utc0_1]", expected_type: string, nullable: true}
+      create_date: {dim_met_id: "10000001311927", unique_id: "261021115949047", source_name: create_date, expected_type: date}
+      create_time: {dim_met_id: "10000000536473", unique_id: "261015231407638", source_name: create_time, expected_type: datetime}
+      protection_starttime: {dim_met_id: "10000000536473", unique_id: "261015231407638", source_name: create_time, expected_type: datetime}
+      final_result: {dim_met_id: "10000000536562", unique_id: "261015231407764", source_name: final_result, expected_type: string}
+      type_name: {dim_met_id: "10000000536474", unique_id: "260907113221380", source_name: type_name, expected_type: string}
+  # ET quota deduplicates account_id; ticket_id is retained only for submission counts.
+  # ticket_id uses the verified field ID from the same SID 1198629 contract.
+  et_quota_tickets:
+    <<: *et_account_list_source
+    grain: approved_et_account_with_ticket
+    consumers: [submission_quota]
+    label: ET Account Quota and Submission Tickets
+    query_profile:
+      group_by: [submitter, region, account_id, ticket_id, create_date, create_time, final_result, type_name]
+      filters: [create_date, type_name, final_result]
+    fields:
+      <<: *et_account_list_fields
+      ticket_id: {dim_met_id: "10000000536470", unique_id: "10000000536470", source_name: ticket_id, expected_type: decimal_string}
+  tht_ticket_details:
+    kind: detail
+    grain: approved_tht_ticket
+    consumers: [customer_monitoring]
+    enabled: true
+    label: THT Approved Ticket Details
+    identity: {app_id: 800414, sid: 1198629, rid: 2937699, tid: 583, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: advertiser_id}
+    supported_dimensions: [date, region, program_type]
+    time_semantics: create_date
+    query_profile:
+      group_by: [create_date, advertiser_id, ticket_id, status, submitter, region, type_name, protection_program_name, protection_businessline, protection_starttime, protection_endtime, protection_estimated_spend, final_result, account_name, advertiser_name]
+      filters: [create_date, type_name, protection_program_name, final_result]
+    fields:
+      create_date: {dim_met_id: "10000001311927", unique_id: "260907112555775", source_name: create_date, expected_type: date}
+      advertiser_id: {dim_met_id: "10000000536485", unique_id: "261021115230336", source_name: advertiser_id, expected_type: decimal_string}
+      ticket_id: {dim_met_id: "10000000536470", unique_id: "260907112555054", source_name: ticket_id, expected_type: decimal_string}
+      status: {dim_met_id: "10000000536472", unique_id: "260907112555683", source_name: status, expected_type: number, nullable: true}
+      submitter: {dim_met_id: "10000000536479", unique_id: "261021115230266", source_name: question_user_name, expected_type: string, nullable: true}
+      region: {dim_met_id: "10000016047833", unique_id: "261021115230299", source_name: region, expected_type: string, nullable: true}
+      type_name: {dim_met_id: "10000000536474", unique_id: "260907112555152", source_name: type_name, expected_type: string}
+      protection_program_name: {dim_met_id: "10000000536519", unique_id: "260907112555187", source_name: protection_program_name, expected_type: string}
+      protection_businessline: {dim_met_id: "10000000536515", unique_id: "260907112555241", source_name: protection_businessline, expected_type: string, nullable: true}
+      protection_starttime: {dim_met_id: "10000000536517", unique_id: "260907112555196", source_name: protection_starttime, expected_type: datetime, nullable: true}
+      protection_endtime: {dim_met_id: "10000000536518", unique_id: "260907112555205", source_name: protection_endtime, expected_type: datetime, nullable: true}
+      protection_estimated_spend: {dim_met_id: "10000000536516", unique_id: "260907112555218", source_name: protection_estimated_spend, expected_type: string, nullable: true}
+      final_result: {dim_met_id: "10000000536562", unique_id: "260907112555469", source_name: final_result, expected_type: string}
+      account_name: {dim_met_id: "10000000915461", source_name: "account_name[dm_advertiser_base_info_df_utc0_1]", expected_type: string, nullable: true}
+      advertiser_name: {dim_met_id: "10000000915459", source_name: "advertiser_name[dm_advertiser_base_info_df_utc0_1]", expected_type: string, nullable: true}
+  st_current_ccr_nfs:
+    kind: detail
+    consumers: [customer_monitoring, alert_rules]
+    enabled: true
+    label: ST Authoritative Account CCR+NFS
+    identity: {app_id: 800414, dashboard_id: 626779, sid: 1139137, rid: 2979783, tid: 336, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: account_id}
+    grain: account_week
+    supported_dimensions: [date, account_id]
+    time_semantics: date
+    query_profile:
+      filters: [p_date]
+    fields: *rid_2979783_fields
+  tht_current_ccr_nfs:
+    <<: *ccr_nfs_source
+    kind: detail
+    grain: account_advertiser_week
+    consumers: [customer_monitoring, alert_rules]
+    enabled: true
+    label: THT Authoritative Advertiser CCR+NFS
+    identity: {app_id: 800414, sid: 1139137, rid: 2942519, tid: 336, region: sg, base_url: https://aeolus-sg.bytedance.net, query_mode: detail, id_dimension: advertiser_id}
+    supported_dimensions: [date, account_id, advertiser_id]
+    time_semantics: date
+    query_profile: {filters: [p_date, is_online]}
+    aggregation: {p0_nfs: sum_nullable, dynamic_p0_ccr: authoritative_ppm_nullable}
+    fields: *rid_2942519_fields
+local_config: {quota_csv: data/quota_config.csv, region_mapping_csv: config/region_mapping.csv, owner_mapping_csv: data/owner_mapping.csv, removal_csv: data/removal_events.csv}

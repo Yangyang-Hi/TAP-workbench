@@ -1,0 +1,50 @@
+{
+  "id": "app_e5d1388d65ef1b49",
+  "name": "tap-governance-workbench-v6-live",
+  "permissions": {
+    "appNavigation": {
+      "targets": [
+        {
+          "allowSearchKeys": [],
+          "appId": "app_e5d1388d65ef1b49",
+          "paths": [
+            "/"
+          ]
+        }
+      ]
+    }
+  },
+  "services": [
+    {
+      "auto_start": true,
+      "command": "cd app/server-go \u0026\u0026 bash start.sh",
+      "description": "按 V6 原型接入 ET CCR/NFS 真实查询",
+      "description_en": "V6 prototype with live ET CCR/NFS queries",
+      "name": "tap-governance-workbench-v6-live",
+      "type": "command",
+      "upload_to_cdn": [
+        "app/dist/assets"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "path": "skills/tap-governance-workbench-v6-live-aime-app-cli"
+    }
+  ],
+  "ui_policy": "aime-native",
+  "ui_provider": {
+    "points": [
+      {
+        "dynamic_ui": true,
+        "id": "primary-entry",
+        "iframe": {
+          "service": "tap-governance-workbench-v6-live",
+          "uri": "/"
+        },
+        "point": "ui.pages.onboarding",
+        "priority": 100
+      }
+    ]
+  }
+}

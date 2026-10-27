@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "timezone": "Asia/Shanghai",
+  "weekly_scheduler": {
+    "enabled": true,
+    "weekday": 1,
+    "hour": 9,
+    "minute": 0,
+    "data_ready_delay_minutes": 120,
+    "auto_send_enabled": false
+  },
+  "membership_source": "submission_detail",
+  "membership_complete_confirmed": false,
+  "membership_mode": "approved_created_window",
+  "concurrency": 2,
+  "max_clients_per_scan": 6000,
+  "scan_timeout_seconds": 1800,
+  "validation_account_ids": [
+    "7675782032500424721",
+    "7244006541899137025",
+    "6917996275652625154"
+  ],
+  "rules": {
+    "ET": {
+      "enabled": true,
+      "business_confirmed": false,
+      "version": "ET-governance-v2-20261021",
+      "watch_ccr_gte": 3,
+      "watch_nfs_gt": 50,
+      "critical_ccr_gt": 45,
+      "ccr_unit": "风神源值；单位待业务确认",
+      "risk_policy": "TAP-20261021-v2"
+    },
+    "THT": {
+      "enabled": true,
+      "business_confirmed": true,
+      "version": "THT-governance-v2-20261021",
+      "watch_ccr_gte": 3,
+      "watch_nfs_gt": 50,
+      "critical_ccr_gt": 45,
+      "ccr_unit": "待确认",
+      "risk_policy": "TAP-20261021-v2"
+    },
+    "ST": {
+      "enabled": true,
+      "business_confirmed": false,
+      "version": "ST-governance-v2-20261021",
+      "watch_ccr_gte": 3,
+      "watch_nfs_gt": 50,
+      "critical_ccr_gt": 45,
+      "ccr_unit": "待确认",
+      "risk_policy": "TAP-20261021-v2"
+    }
+  }
+}

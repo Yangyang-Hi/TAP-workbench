@@ -1,0 +1,14 @@
+version: 1
+rules:
+  quota:
+    st_et_bands: {green_lt: 0.60, yellow_gte: 0.60, orange_gte: 0.80, red_gte: 1.00}
+    tht_has_total_quota: false
+  tht:
+    weekly_rank: {enabled: true, metric: p0_nfs, rank_scope: region, top_n: 20}
+    ccr_wow_alert: {enabled: false, threshold_pct: null, baseline_window_days: 7, observation_window_days: 7}
+  st:
+    high_ccr_rank: {enabled: true, rank_scope: region, top_n: 20}
+    ccr_change_alert: {enabled: false, threshold_pct: null, comparison: wow}
+  et:
+    high_ccr_rank: {enabled: true, rank_scope: region, top_n: 20}
+    ccr_spike_alert: {enabled: false, threshold_pct: null}

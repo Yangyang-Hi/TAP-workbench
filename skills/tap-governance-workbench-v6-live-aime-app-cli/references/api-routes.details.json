@@ -1,0 +1,2049 @@
+{
+  "schema_version": "1.1",
+  "template_version": "0.0.1",
+  "generated_at": "",
+  "source": "idl-gen",
+  "route_count": 48,
+  "lookup_hint": "先读 api-routes.index.json 定位接口，再在本文件 grep_search 精确搜索 \"METHOD PATH\" 附近上下文，例如 \"POST /api/items\"。",
+  "routes_by_key": {
+    "POST /api/admin/sync": {
+      "method": "POST",
+      "path": "/api/admin/sync",
+      "summary": "按数据源和运行时筛选触发同步",
+      "public": false,
+      "tags": [
+        "sync"
+      ],
+      "response": {
+        "data": {
+          "status": "partial",
+          "runs": []
+        }
+      },
+      "body_params": [
+        {
+          "name": "source_keys",
+          "type": "array"
+        },
+        {
+          "name": "filters",
+          "type": "object"
+        },
+        {
+          "name": "force",
+          "type": "boolean"
+        }
+      ]
+    },
+    "GET /api/governance/identity-diagnostics": {
+      "method": "GET",
+      "path": "/api/governance/identity-diagnostics",
+      "summary": "获取工作台登录身份、风神短期凭证状态、网络状态与逐 Report 查询状态",
+      "public": false,
+      "tags": [
+        "governance"
+      ],
+      "response": {
+        "data": {
+          "workbench_identity": {
+            "status": "available",
+            "principal": "heyangyang.31"
+          },
+          "aeolus_identity": {
+            "status": "available",
+            "principal": "heyangyang.31"
+          },
+          "aeolus_network": {
+            "status": "available",
+            "endpoint": "https://aeolus-sg.bytedance.net",
+            "http_category": "success",
+            "duration_ms": 0
+          },
+          "reports": []
+        }
+      }
+    },
+    "GET /api/governance/registry": {
+      "method": "GET",
+      "path": "/api/governance/registry",
+      "summary": "获取数据源合同、粒度、Ready/Conditional/Blocked 状态、快照与质量诊断；S04仅名称补充，S09范围合同不足时保持conditional/unknown",
+      "public": false,
+      "tags": [
+        "governance"
+      ],
+      "response": {
+        "data": {
+          "sources": [
+            {
+              "source_key": "SUBMISSION_VOLUME_V2",
+              "status": "ready",
+              "latest_sync": {},
+              "latest_snapshot": {},
+              "diagnostics": {}
+            }
+          ],
+          "cards": [],
+          "regions": [],
+          "tiers": []
+        }
+      }
+    },
+    "GET /api/governance/sync-status": {
+      "method": "GET",
+      "path": "/api/governance/sync-status",
+      "summary": "获取最近同步运行状态",
+      "public": false,
+      "tags": [
+        "governance"
+      ],
+      "response": {
+        "data": {
+          "runs": []
+        }
+      }
+    },
+    "GET /api/governance/tabs/{tab}": {
+      "method": "GET",
+      "path": "/api/governance/tabs/{tab}",
+      "summary": "获取五个治理 Tab 的标准卡片和图表数据",
+      "public": false,
+      "tags": [
+        "governance"
+      ],
+      "response": {
+        "data": {
+          "tab": "overview",
+          "status": "unavailable",
+          "page_contract": {
+            "controls": [],
+            "fixed_scope": {}
+          },
+          "cards": [],
+          "filters": {},
+          "quota": {
+            "as_of": "",
+            "scope": "global",
+            "plans": [],
+            "regions": [],
+            "tht": {}
+          }
+        }
+      },
+      "query_params": [
+        {
+          "name": "start_date",
+          "type": "string"
+        },
+        {
+          "name": "end_date",
+          "type": "string"
+        },
+        {
+          "name": "region",
+          "type": "string"
+        },
+        {
+          "name": "tier",
+          "type": "string"
+        },
+        {
+          "name": "application_type",
+          "type": "string"
+        }
+      ]
+    },
+    "POST /api/integrations/feishu/card-callback": {
+      "method": "POST",
+      "path": "/api/integrations/feishu/card-callback",
+      "summary": "飞书新版加密卡片回调，独立签名和身份校验，不要求浏览器JWT",
+      "public": true,
+      "tags": [
+        "casework",
+        "feishu"
+      ],
+      "response": {
+        "toast": {},
+        "card": {}
+      },
+      "body_params": [
+        {
+          "name": "encrypt",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "GET /api/integrations/feishu/config-status": {
+      "method": "GET",
+      "path": "/api/integrations/feishu/config-status",
+      "summary": "管理员读取飞书 Bot 凭证配置状态（永不返回 Secret 或 Token）",
+      "public": false,
+      "tags": [
+        "integrations",
+        "feishu"
+      ],
+      "response": {
+        "data": {}
+      }
+    },
+    "POST /api/integrations/feishu/credentials": {
+      "method": "POST",
+      "path": "/api/integrations/feishu/credentials",
+      "summary": "管理员验证并原子保存飞书 Bot 凭证",
+      "public": false,
+      "tags": [
+        "integrations",
+        "feishu"
+      ],
+      "response": {
+        "data": {}
+      },
+      "body_params": [
+        {
+          "name": "app_id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "app_secret",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "POST /api/integrations/feishu/test-message": {
+      "method": "POST",
+      "path": "/api/integrations/feishu/test-message",
+      "summary": "管理员仅向后端测试白名单中的指定邮箱发送无客户信息纯文本测试消息",
+      "public": false,
+      "tags": [
+        "integrations",
+        "feishu"
+      ],
+      "response": {
+        "data": {
+          "mode": "test",
+          "message_id": "",
+          "sent_at": "",
+          "recipient": {},
+          "api_response": {}
+        }
+      },
+      "body_params": [
+        {
+          "name": "email",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "POST /api/integrations/feishu/test-recipient": {
+      "method": "POST",
+      "path": "/api/integrations/feishu/test-recipient",
+      "summary": "管理员按完整企业邮箱解析并保存唯一测试接收人，启用 test 模式",
+      "public": false,
+      "tags": [
+        "integrations",
+        "feishu"
+      ],
+      "response": {
+        "data": {}
+      },
+      "body_params": [
+        {
+          "name": "email",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "POST /api/monitoring/et/current": {
+      "method": "POST",
+      "path": "/api/monitoring/et/current",
+      "summary": "查询单个 ET Account 的权威 Account 粒度 Current P0 CCR/NFS/Revenue 真实业务数据",
+      "public": false,
+      "tags": [
+        "monitoring",
+        "et"
+      ],
+      "request_example": {
+        "account_id": "7462465462811770896",
+        "start_date": "2026-10-12",
+        "end_date": "2026-10-18"
+      },
+      "response": {
+        "data": {
+          "status": "success",
+          "account_id": "7462465462811770896",
+          "start_date": "2026-10-12",
+          "end_date": "2026-10-18",
+          "dynamic_p0_ccr": 8.552188750450918,
+          "p0_nfs": 61,
+          "revenue": 4080.989999999989,
+          "revenue_status": "success",
+          "revenue_error": "",
+          "authority_grain": "account_week",
+          "data_source": {
+            "app_id": 800414,
+            "sid": 1139137,
+            "rid": 2979783,
+            "grain": "account_week",
+            "revenue": {
+              "rid": 2980054,
+              "sid": 1139137,
+              "grain": "account_week"
+            }
+          },
+          "request_id": "",
+          "log_id": "",
+          "revenue_request_id": "",
+          "revenue_log_id": "",
+          "query_duration_ms": 9063,
+          "last_queried_at": "2026-10-22T05:12:49Z",
+          "cached": false
+        }
+      },
+      "body_params": [
+        {
+          "name": "account_id",
+          "type": "string",
+          "required": true,
+          "description": "ET Account ID，按字符串处理"
+        },
+        {
+          "name": "start_date",
+          "type": "string",
+          "required": true,
+          "description": "开始日期 YYYY-MM-DD"
+        },
+        {
+          "name": "end_date",
+          "type": "string",
+          "required": true,
+          "description": "结束日期 YYYY-MM-DD"
+        }
+      ]
+    },
+    "POST /api/monitoring/risk-scans": {
+      "method": "POST",
+      "path": "/api/monitoring/risk-scans",
+      "summary": "创建 ET/THT 高风险客户异步扫描",
+      "public": false,
+      "tags": [
+        "monitoring",
+        "risk"
+      ],
+      "response": {
+        "data": {
+          "id": "scan-id",
+          "status": "running",
+          "stage": "loading_members",
+          "member_count": 0,
+          "done": 0,
+          "rows": []
+        }
+      },
+      "body_params": [
+        {
+          "name": "program",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "start_date",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "end_date",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "member_start_date",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "member_end_date",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "region",
+          "type": "string"
+        },
+        {
+          "name": "force",
+          "type": "boolean"
+        }
+      ]
+    },
+    "GET /api/monitoring/risk-scans/{id}": {
+      "method": "GET",
+      "path": "/api/monitoring/risk-scans/{id}",
+      "summary": "查询 ET/THT 高风险客户扫描进度与完整结果",
+      "public": false,
+      "tags": [
+        "monitoring",
+        "risk"
+      ],
+      "response": {
+        "data": {
+          "id": "scan-id",
+          "status": "ready",
+          "stage": "finished",
+          "member_count": 0,
+          "done": 0,
+          "rows": []
+        },
+        "actions": {}
+      }
+    },
+    "POST /api/monitoring/risk-scans/{id}/resume-missing": {
+      "method": "POST",
+      "path": "/api/monitoring/risk-scans/{id}/resume-missing",
+      "summary": "在既有 ET 扫描任务内按 checkpoint 连续补齐 not_queried/failed Current 指标，不重扫 membership",
+      "public": false,
+      "tags": [
+        "monitoring",
+        "et",
+        "repair"
+      ],
+      "response": {
+        "data": {
+          "id": "scan-id",
+          "status": "running",
+          "processed": 100,
+          "remaining": 209,
+          "classification": {}
+        }
+      },
+      "body_params": [
+        {
+          "name": "max_chunks",
+          "type": "integer",
+          "description": "本次最多处理 Current 指标分片数；1 用于小分片验证，0 表示处理全部剩余分片"
+        },
+        {
+          "name": "include_enrichment",
+          "type": "boolean",
+          "description": "补齐同一任务中未查询的 Names、Advertiser、Reasons 与 Allowlist 字段"
+        }
+      ]
+    },
+    "GET /api/submissions": {
+      "method": "GET",
+      "path": "/api/submissions",
+      "summary": "查询最近成功快照中的提报数据",
+      "public": false,
+      "tags": [
+        "submissions"
+      ],
+      "response": {
+        "data": [],
+        "total": 0,
+        "status": "unavailable",
+        "reason": "pending source"
+      },
+      "query_params": [
+        {
+          "name": "start_date",
+          "type": "string"
+        },
+        {
+          "name": "end_date",
+          "type": "string"
+        },
+        {
+          "name": "region",
+          "type": "string"
+        },
+        {
+          "name": "tier",
+          "type": "string"
+        },
+        {
+          "name": "ticket",
+          "type": "string"
+        },
+        {
+          "name": "limit",
+          "type": "integer"
+        }
+      ]
+    },
+    "GET /api/submissions/quota": {
+      "method": "GET",
+      "path": "/api/submissions/quota",
+      "summary": "按季度和时间窗聚合 ET、THT、ST 提报及 Quota 使用率",
+      "public": false,
+      "tags": [
+        "submissions",
+        "quota"
+      ],
+      "response": {
+        "data": {
+          "status": "partial",
+          "quarter": "Q4",
+          "time": {},
+          "side_effects": false,
+          "as_of": {},
+          "st_snapshot": {},
+          "global": {},
+          "regions": [],
+          "weekly": [],
+          "errors": {},
+          "source_status": {},
+          "diagnostics": {},
+          "methodology": {}
+        }
+      },
+      "query_params": [
+        {
+          "name": "quarter",
+          "type": "string",
+          "required": true,
+          "description": "Q3 或 Q4"
+        },
+        {
+          "name": "time_mode",
+          "type": "string",
+          "description": "weekly 或 custom；weekly 按批次截止日期计算季度累计，无批次时显式返回当前 QTD"
+        },
+        {
+          "name": "batch_id",
+          "type": "string",
+          "description": "真实周度批次 ID；仅作为 Quota 累计截止日期，不使用单周起点"
+        },
+        {
+          "name": "start_date",
+          "type": "string",
+          "description": "ET/THT 开始日期 YYYY-MM-DD"
+        },
+        {
+          "name": "end_date",
+          "type": "string",
+          "description": "ET/THT 结束日期 YYYY-MM-DD"
+        },
+        {
+          "name": "program",
+          "type": "string",
+          "description": "ET/THT/ST"
+        },
+        {
+          "name": "region",
+          "type": "string",
+          "description": "提报标准区域"
+        },
+        {
+          "name": "submitter",
+          "type": "string",
+          "description": "原提报人精确匹配，支持多提报人"
+        },
+        {
+          "name": "advertiser_id",
+          "type": "string",
+          "description": "精确匹配 advertiser_id 或 linked_advertiser_ids"
+        },
+        {
+          "name": "account_id",
+          "type": "string",
+          "description": "精确匹配 account_id 或 linked_account_ids"
+        }
+      ]
+    },
+    "POST /api/submissions/st-snapshots": {
+      "method": "POST",
+      "path": "/api/submissions/st-snapshots",
+      "summary": "使用当前用户 JWT 运行时读取 ST Q4/Q3 权威 Sheet，校验后持久化快照",
+      "public": false,
+      "tags": [
+        "submissions",
+        "st"
+      ],
+      "response": {
+        "data": {
+          "status": "success",
+          "snapshots": [],
+          "last_attempt": {}
+        }
+      }
+    },
+    "GET /api/submissions/status": {
+      "method": "GET",
+      "path": "/api/submissions/status",
+      "summary": "查询提报数据质量与快照状态",
+      "public": false,
+      "tags": [
+        "submissions"
+      ],
+      "response": {
+        "data": {
+          "status": "unavailable",
+          "reason": "pending source"
+        }
+      }
+    },
+    "GET /api/workbench/analytics": {
+      "method": "GET",
+      "path": "/api/workbench/analytics",
+      "summary": "运营按共享事件台账查询治理分析",
+      "public": false,
+      "tags": [
+        "casework"
+      ],
+      "response": {
+        "data": {
+          "summary": {},
+          "notification": {},
+          "notification_source": {},
+          "outcomes": {
+            "notification_complete": {},
+            "case_closed": {},
+            "risk_improved": {}
+          },
+          "effect_status": {},
+          "rule_summaries": [],
+          "priority_clients": [],
+          "top20_candidates": [],
+          "batch_status": {
+            "label": "阶段性结果",
+            "incomplete": true,
+            "programs": []
+          },
+          "quota_alerts": {
+            "et": {},
+            "st": {}
+          },
+          "cases": [],
+          "case_presentations": {}
+        }
+      },
+      "query_params": [
+        {
+          "name": "time_mode",
+          "type": "string",
+          "description": "weekly 或 custom；custom 不创建事件，因此报告返回空事件范围"
+        },
+        {
+          "name": "batch_id",
+          "type": "string"
+        },
+        {
+          "name": "case_scope",
+          "type": "string"
+        },
+        {
+          "name": "start_date",
+          "type": "string"
+        },
+        {
+          "name": "end_date",
+          "type": "string"
+        },
+        {
+          "name": "region",
+          "type": "string"
+        },
+        {
+          "name": "program",
+          "type": "string"
+        },
+        {
+          "name": "tier",
+          "type": "string"
+        },
+        {
+          "name": "submitter",
+          "type": "string"
+        },
+        {
+          "name": "owner",
+          "type": "string"
+        },
+        {
+          "name": "advertiser_id",
+          "type": "string"
+        },
+        {
+          "name": "account_id",
+          "type": "string"
+        },
+        {
+          "name": "search",
+          "type": "string"
+        },
+        {
+          "name": "date_field",
+          "type": "string"
+        },
+        {
+          "name": "level",
+          "type": "string"
+        }
+      ]
+    },
+    "GET /api/workbench/analytics/export": {
+      "method": "GET",
+      "path": "/api/workbench/analytics/export",
+      "summary": "运营按同一筛选口径导出治理分析Excel",
+      "public": false,
+      "tags": [
+        "casework"
+      ],
+      "response": {
+        "data": {}
+      },
+      "query_params": [
+        {
+          "name": "time_mode",
+          "type": "string"
+        },
+        {
+          "name": "batch_id",
+          "type": "string"
+        },
+        {
+          "name": "case_scope",
+          "type": "string"
+        },
+        {
+          "name": "start_date",
+          "type": "string"
+        },
+        {
+          "name": "end_date",
+          "type": "string"
+        },
+        {
+          "name": "region",
+          "type": "string"
+        },
+        {
+          "name": "program",
+          "type": "string"
+        },
+        {
+          "name": "tier",
+          "type": "string"
+        },
+        {
+          "name": "submitter",
+          "type": "string"
+        },
+        {
+          "name": "owner",
+          "type": "string"
+        },
+        {
+          "name": "advertiser_id",
+          "type": "string"
+        },
+        {
+          "name": "account_id",
+          "type": "string"
+        },
+        {
+          "name": "search",
+          "type": "string"
+        },
+        {
+          "name": "date_field",
+          "type": "string"
+        },
+        {
+          "name": "level",
+          "type": "string"
+        }
+      ]
+    },
+    "GET /api/workbench/analytics/export-html": {
+      "method": "GET",
+      "path": "/api/workbench/analytics/export-html",
+      "summary": "导出与当前筛选和数据版本一致的独立只读HTML治理报告",
+      "public": false,
+      "tags": [
+        "casework"
+      ],
+      "response": {
+        "data": {}
+      },
+      "query_params": [
+        {
+          "name": "time_mode",
+          "type": "string"
+        },
+        {
+          "name": "batch_id",
+          "type": "string"
+        },
+        {
+          "name": "case_scope",
+          "type": "string"
+        },
+        {
+          "name": "start_date",
+          "type": "string"
+        },
+        {
+          "name": "end_date",
+          "type": "string"
+        },
+        {
+          "name": "region",
+          "type": "string"
+        },
+        {
+          "name": "program",
+          "type": "string"
+        },
+        {
+          "name": "tier",
+          "type": "string"
+        },
+        {
+          "name": "submitter",
+          "type": "string"
+        },
+        {
+          "name": "owner",
+          "type": "string"
+        },
+        {
+          "name": "advertiser_id",
+          "type": "string"
+        },
+        {
+          "name": "account_id",
+          "type": "string"
+        },
+        {
+          "name": "search",
+          "type": "string"
+        },
+        {
+          "name": "date_field",
+          "type": "string"
+        },
+        {
+          "name": "level",
+          "type": "string"
+        }
+      ]
+    },
+    "POST /api/workbench/analytics/reports": {
+      "method": "POST",
+      "path": "/api/workbench/analytics/reports",
+      "summary": "按当前真实统计与筛选生成不可变治理报告版本并保存到 Cloud DB",
+      "public": false,
+      "tags": [
+        "casework",
+        "reports"
+      ],
+      "response": {
+        "data": {
+          "report_id": "rpt_x",
+          "version": "rpt_x",
+          "title": "TAP 初步治理分析报告",
+          "period": "2026-10-01 至 2026-10-07",
+          "generated_at": "2026-10-26T05:00:00Z",
+          "data_as_of": "2026-10-26T04:59:00Z",
+          "share_path": "/reports/rpt_x"
+        }
+      },
+      "query_params": [
+        {
+          "name": "time_mode",
+          "type": "string"
+        },
+        {
+          "name": "batch_id",
+          "type": "string"
+        },
+        {
+          "name": "case_scope",
+          "type": "string"
+        },
+        {
+          "name": "start_date",
+          "type": "string"
+        },
+        {
+          "name": "end_date",
+          "type": "string"
+        },
+        {
+          "name": "region",
+          "type": "string"
+        },
+        {
+          "name": "program",
+          "type": "string"
+        },
+        {
+          "name": "tier",
+          "type": "string"
+        },
+        {
+          "name": "submitter",
+          "type": "string"
+        },
+        {
+          "name": "owner",
+          "type": "string"
+        },
+        {
+          "name": "advertiser_id",
+          "type": "string"
+        },
+        {
+          "name": "account_id",
+          "type": "string"
+        },
+        {
+          "name": "search",
+          "type": "string"
+        },
+        {
+          "name": "date_field",
+          "type": "string"
+        },
+        {
+          "name": "level",
+          "type": "string"
+        }
+      ]
+    },
+    "GET /api/workbench/analytics/reports/{report_id}": {
+      "method": "GET",
+      "path": "/api/workbench/analytics/reports/{report_id}",
+      "summary": "只读获取 Cloud DB 中固定ID对应的不可变治理报告",
+      "public": false,
+      "tags": [
+        "casework",
+        "reports",
+        "readonly"
+      ],
+      "response": {
+        "data": {
+          "report_id": "rpt_x",
+          "version": "rpt_x",
+          "title": "TAP 初步治理分析报告",
+          "period": "2026-10-01 至 2026-10-07",
+          "owner": "user",
+          "created_at": "2026-10-26T05:00:00Z",
+          "generated_at": "2026-10-26T05:00:00Z",
+          "data_as_of": "2026-10-26T04:59:00Z",
+          "filters_json": "{}",
+          "content_html": "<!doctype html>...",
+          "content_hash": "sha256"
+        }
+      }
+    },
+    "GET /api/workbench/backfills": {
+      "method": "GET",
+      "path": "/api/workbench/backfills",
+      "summary": "运营查看回填任务状态、进度、checkpoint、请求ID和分Program结果",
+      "public": false,
+      "tags": [
+        "casework",
+        "backfill",
+        "readonly"
+      ],
+      "response": {
+        "data": {
+          "tasks": []
+        }
+      }
+    },
+    "POST /api/workbench/backfills": {
+      "method": "POST",
+      "path": "/api/workbench/backfills",
+      "summary": "运营显式创建 enrichment 定向回填任务；dry-run 仅预览，禁止全量 membership、建 case 或通知",
+      "public": false,
+      "tags": [
+        "casework",
+        "backfill"
+      ],
+      "response": {
+        "data": {
+          "id": "backfill-id",
+          "status": "preview_ready",
+          "dry_run": true,
+          "fingerprint": "sha256",
+          "progress": {},
+          "program_results": {},
+          "errors": []
+        }
+      },
+      "body_params": [
+        {
+          "name": "request_id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "dry_run",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "program",
+          "type": "string",
+          "description": "ET/THT/ST 或空"
+        },
+        {
+          "name": "batch_id",
+          "type": "string"
+        },
+        {
+          "name": "case_id",
+          "type": "string"
+        }
+      ]
+    },
+    "GET /api/workbench/backfills/{id}": {
+      "method": "GET",
+      "path": "/api/workbench/backfills/{id}",
+      "summary": "运营查看单个回填任务详情",
+      "public": false,
+      "tags": [
+        "casework",
+        "backfill",
+        "readonly"
+      ],
+      "response": {
+        "data": {
+          "id": "backfill-id",
+          "status": "running",
+          "progress": {},
+          "errors": []
+        }
+      }
+    },
+    "POST /api/workbench/backfills/{id}/retry": {
+      "method": "POST",
+      "path": "/api/workbench/backfills/{id}/retry",
+      "summary": "运营显式从 checkpoint 重试失败或中断的回填任务",
+      "public": false,
+      "tags": [
+        "casework",
+        "backfill"
+      ],
+      "response": {
+        "data": {
+          "id": "backfill-id",
+          "status": "queued"
+        }
+      },
+      "body_params": [
+        {
+          "name": "request_id",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "GET /api/workbench/batches": {
+      "method": "GET",
+      "path": "/api/workbench/batches",
+      "summary": "只读返回真实持久化周度批次；无历史时返回空列表",
+      "public": false,
+      "tags": [
+        "casework",
+        "readonly"
+      ],
+      "response": {
+        "data": {
+          "status": "available",
+          "batches": [
+            {
+              "batch_id": "TAP-WEEK-2026-10-12-2026-10-18",
+              "week_name": "2026-W42",
+              "generated_at": "2026-10-19T01:00:00Z",
+              "metric_start_date": "2026-10-12",
+              "metric_end_date": "2026-10-18",
+              "timezone": "Asia/Shanghai",
+              "rule_versions": {},
+              "programs": [
+                "ET"
+              ],
+              "status": "available",
+              "completeness": "complete"
+            }
+          ],
+          "timezone": "Asia/Shanghai",
+          "source": "persisted_scans"
+        }
+      }
+    },
+    "GET /api/workbench/cases": {
+      "method": "GET",
+      "path": "/api/workbench/cases",
+      "summary": "所有已登录使用者共享业务事件；收件箱可默认限定最新一致指标窗口，完整集合过滤后服务端分页",
+      "public": false,
+      "tags": [
+        "casework"
+      ],
+      "response": {
+        "data": {}
+      },
+      "query_params": [
+        {
+          "name": "case_scope",
+          "type": "string",
+          "description": "current=最新一致指标窗口；all=全部历史，默认 all 以兼容既有调用"
+        },
+        {
+          "name": "program",
+          "type": "string",
+          "description": "ET/THT/ST"
+        },
+        {
+          "name": "tier",
+          "type": "string",
+          "description": "真实客户 Tier；源字段缺失时结果明确标记"
+        },
+        {
+          "name": "region",
+          "type": "string",
+          "description": "提报标准区域"
+        },
+        {
+          "name": "submitter",
+          "type": "string",
+          "description": "原提报人，多值任一命中"
+        },
+        {
+          "name": "owner",
+          "type": "string",
+          "description": "当前负责人"
+        },
+        {
+          "name": "advertiser_id",
+          "type": "string",
+          "description": "精确命中主 ID 或 linked_advertiser_ids"
+        },
+        {
+          "name": "account_id",
+          "type": "string",
+          "description": "精确命中主 ID 或 linked_account_ids"
+        },
+        {
+          "name": "start_date",
+          "type": "string"
+        },
+        {
+          "name": "end_date",
+          "type": "string"
+        },
+        {
+          "name": "date_field",
+          "type": "string",
+          "description": "created_at/updated_at/submission_date/protection_start/protection_end"
+        },
+        {
+          "name": "alert_start_date",
+          "type": "string",
+          "description": "预警产生开始日期 YYYY-MM-DD"
+        },
+        {
+          "name": "alert_end_date",
+          "type": "string",
+          "description": "预警产生结束日期 YYYY-MM-DD（含整日）"
+        },
+        {
+          "name": "alert_level",
+          "type": "string",
+          "description": "critical/watch/normal"
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "open/processing/observing/pending_approval/pending_review/closed"
+        },
+        {
+          "name": "mine",
+          "type": "string",
+          "description": "todo=我的待办；submitted=我的提报"
+        },
+        {
+          "name": "search",
+          "type": "string"
+        },
+        {
+          "name": "page",
+          "type": "integer"
+        },
+        {
+          "name": "page_size",
+          "type": "integer"
+        }
+      ]
+    },
+    "POST /api/workbench/cases": {
+      "method": "POST",
+      "path": "/api/workbench/cases",
+      "summary": "从当前用户真实命中扫描幂等建立事件，不自动发送",
+      "public": false,
+      "tags": [
+        "casework"
+      ],
+      "response": {
+        "data": {}
+      },
+      "body_params": [
+        {
+          "name": "scan_id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "row_id",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "GET /api/workbench/cases/{id}": {
+      "method": "GET",
+      "path": "/api/workbench/cases/{id}",
+      "summary": "共享事件的初始快照、结构化处置、审计、复查和通知；权限由当前鉴权身份与已验证人员映射服务端计算",
+      "public": false,
+      "tags": [
+        "casework"
+      ],
+      "response": {
+        "data": {},
+        "notifications": [],
+        "permissions": {
+          "can_handle": true,
+          "can_review": false
+        }
+      }
+    },
+    "POST /api/workbench/cases/{id}/commands": {
+      "method": "POST",
+      "path": "/api/workbench/cases/{id}/commands",
+      "summary": "带版本和幂等键的统一分派、处置、复核状态机",
+      "public": false,
+      "tags": [
+        "casework"
+      ],
+      "response": {
+        "data": {}
+      },
+      "body_params": [
+        {
+          "name": "expected_version",
+          "type": "int",
+          "required": true
+        },
+        {
+          "name": "request_id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "operation",
+          "type": "string",
+          "required": true,
+          "description": "operator_confirm/submitter_complete/close（推荐治理闭环）或兼容动作 accept/assign/plan/complete/approve/return/reopen；服务端严格校验状态与角色"
+        },
+        {
+          "name": "plan",
+          "type": "string"
+        },
+        {
+          "name": "note",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "fields",
+          "type": "object"
+        },
+        {
+          "name": "owner",
+          "type": "string"
+        },
+        {
+          "name": "reviewer",
+          "type": "string"
+        },
+        {
+          "name": "closure_reason",
+          "type": "string"
+        }
+      ]
+    },
+    "POST /api/workbench/cases/{id}/notification-preview": {
+      "method": "POST",
+      "path": "/api/workbench/cases/{id}/notification-preview",
+      "summary": "刷新权威人员映射并解析 Bot 域目标的无发送预览",
+      "public": false,
+      "tags": [
+        "casework",
+        "feishu"
+      ],
+      "response": {
+        "data": {
+          "dry_run": true,
+          "will_send": false,
+          "alert_id": "TAP-alert",
+          "original_submitter": "name",
+          "region": "APAC",
+          "case_version": 1,
+          "confirmation_token": "",
+          "confirmation_expires_in_seconds": 600,
+          "presentation": {
+            "submitter": "name",
+            "alert_type": "CCR/NFS absolute threshold",
+            "alert_level": "watch",
+            "status": "processing",
+            "time_window": "2026-10-19 to 2026-10-25",
+            "region": "APAC",
+            "account_id": "",
+            "account_name": "",
+            "advertiser_id": "",
+            "p0_ccr": null,
+            "p0_nfs": null,
+            "revenue": null,
+            "reported_reasons": [],
+            "trigger_criteria": []
+          },
+          "mapping_result": {},
+          "mapping_source": {
+            "status": "fresh",
+            "source_error": "",
+            "revision": "",
+            "source_synced_at": "",
+            "cache_age_seconds": 0
+          },
+          "bot_resolution": {
+            "status": "resolved",
+            "diagnostic": {
+              "stage": "batch_get_id",
+              "status": "resolved",
+              "app_id_fingerprint": "",
+              "response_has_user_id": true,
+              "response_has_open_id": true,
+              "cached": false
+            }
+          },
+          "actual_target": {}
+        }
+      },
+      "body_params": [
+        {
+          "name": "mode",
+          "type": "string",
+          "description": "test 或 formal；必须与当前服务配置一致"
+        },
+        {
+          "name": "recipient_id",
+          "type": "string",
+          "description": "test 模式下指定测试白名单目标；formal 模式忽略"
+        }
+      ]
+    },
+    "POST /api/workbench/cases/{id}/notify": {
+      "method": "POST",
+      "path": "/api/workbench/cases/{id}/notify",
+      "summary": "显式向白名单测试人员发送卡片；要求确认 token 并保持 test 模式",
+      "public": false,
+      "tags": [
+        "casework",
+        "feishu"
+      ],
+      "response": {
+        "data": {},
+        "notification_id": "",
+        "notification": {
+          "id": "",
+          "status": "",
+          "message_id": "",
+          "updated_at": ""
+        },
+        "deduplicated": false,
+        "idempotent": false,
+        "reused": false,
+        "message": ""
+      },
+      "body_params": [
+        {
+          "name": "expected_version",
+          "type": "int",
+          "required": true
+        },
+        {
+          "name": "mode",
+          "type": "string",
+          "required": true,
+          "description": "test 或 formal；测试成功不占用正式幂等键"
+        },
+        {
+          "name": "recipient_id",
+          "type": "string",
+          "description": "test 模式必填白名单 open_id；formal 模式忽略"
+        },
+        {
+          "name": "preview_token",
+          "type": "string",
+          "required": true,
+          "description": "notification-preview 返回的短期票据；绑定事件、模式、模板和实际收件人快照"
+        },
+        {
+          "name": "confirmation_token",
+          "type": "string",
+          "description": "兼容旧前端；与 preview_token 等价"
+        },
+        {
+          "name": "resend",
+          "type": "boolean",
+          "description": "仅 Operator 可用；对已成功发送的正式通知创建独立重发记录，不覆盖原审计"
+        },
+        {
+          "name": "resend_request_id",
+          "type": "string",
+          "description": "受控重发必填；作为本次重发的独立幂等键"
+        },
+        {
+          "name": "confirmation_note",
+          "type": "string",
+          "description": "受控重发必填；记录人工重发原因"
+        }
+      ]
+    },
+    "POST /api/workbench/cases/{id}/rechecks": {
+      "method": "POST",
+      "path": "/api/workbench/cases/{id}/rechecks",
+      "summary": "以当前AIME身份查询独立窗口真实CCR/NFS并保存复查",
+      "public": false,
+      "tags": [
+        "casework"
+      ],
+      "response": {
+        "data": {}
+      },
+      "body_params": [
+        {
+          "name": "expected_version",
+          "type": "int",
+          "required": true
+        },
+        {
+          "name": "start_date",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "end_date",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "comparability_note",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "GET /api/workbench/casework/config": {
+      "method": "GET",
+      "path": "/api/workbench/casework/config",
+      "summary": "处置模板、当前角色、测试接收目标和飞书配置状态",
+      "public": false,
+      "tags": [
+        "casework"
+      ],
+      "response": {
+        "data": {}
+      }
+    },
+    "POST /api/workbench/comparisons/refresh": {
+      "method": "POST",
+      "path": "/api/workbench/comparisons/refresh",
+      "summary": "按 account_id 与 program 定向刷新当前持久化行的比较窗口，不触发全量扫描、处置或通知",
+      "public": false,
+      "tags": [
+        "casework",
+        "comparison"
+      ],
+      "response": {
+        "data": {
+          "status": "success",
+          "account_id": "7000000000000000001",
+          "program": "ET",
+          "anchor": "2026-10-07",
+          "windows": {
+            "pre": [
+              "2026-09-30",
+              "2026-10-06"
+            ],
+            "post": [
+              "2026-10-07",
+              "2026-10-13"
+            ]
+          },
+          "comparison": {
+            "pre_ccr": 1,
+            "post_ccr": 2,
+            "pre_ccr_fact": {
+              "value": 1,
+              "status": "available",
+              "reason": ""
+            },
+            "post_ccr_fact": {
+              "value": 2,
+              "status": "available",
+              "reason": ""
+            },
+            "increase_fact": {
+              "value": 100,
+              "status": "available",
+              "reason": ""
+            },
+            "ccr_growth_pct": 100,
+            "legacy_wow_ccr_growth_pct": null,
+            "status": "available"
+          },
+          "updated_rows": 1,
+          "updated_jobs": 1,
+          "targeted_only": true,
+          "side_effects": {
+            "case_status": false,
+            "actions": false,
+            "notifications": false
+          },
+          "completeness": "complete",
+          "audit": {}
+        }
+      },
+      "body_params": [
+        {
+          "name": "account_id",
+          "type": "string",
+          "required": true,
+          "description": "精确 Account ID，仅刷新该账号"
+        },
+        {
+          "name": "program",
+          "type": "string",
+          "required": true,
+          "description": "ET（预留 ST）；当前仅允许 ET"
+        }
+      ]
+    },
+    "GET /api/workbench/history": {
+      "method": "GET",
+      "path": "/api/workbench/history",
+      "summary": "所有已登录使用者共享的最近十次扫描与处理记录",
+      "public": false,
+      "tags": [
+        "casework"
+      ],
+      "response": {
+        "data": {
+          "scans": [],
+          "actions": {},
+          "scope": "shared_recent_scans",
+          "limit": 10
+        }
+      }
+    },
+    "GET /api/workbench/identity-mappings": {
+      "method": "GET",
+      "path": "/api/workbench/identity-mappings",
+      "summary": "刷新并列出权威人员映射（敏感字段脱敏）",
+      "public": false,
+      "tags": [
+        "casework",
+        "feishu"
+      ],
+      "response": {
+        "data": {
+          "mappings": [],
+          "source": {
+            "status": "fresh",
+            "source_error": "",
+            "revision": "",
+            "source_synced_at": "",
+            "cache_age_seconds": 0
+          },
+          "auto_send_enabled": false
+        }
+      }
+    },
+    "PUT /api/workbench/identity-mappings/{record_id}/enabled": {
+      "method": "PUT",
+      "path": "/api/workbench/identity-mappings/{record_id}/enabled",
+      "summary": "运营启用或停用人员映射；人工停用不会被后续 Sheet 同步覆盖",
+      "public": false,
+      "tags": [
+        "casework",
+        "feishu"
+      ],
+      "response": {
+        "data": {}
+      },
+      "body_params": [
+        {
+          "name": "enabled",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "confirmation_note",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    "POST /api/workbench/notifications/batch": {
+      "method": "POST",
+      "path": "/api/workbench/notifications/batch",
+      "summary": "使用统一通知服务批量预览或排队；默认 dry_run，正式执行要求每条独立有效 preview_token",
+      "public": false,
+      "tags": [
+        "casework",
+        "feishu"
+      ],
+      "response": {
+        "data": {
+          "dry_run": true,
+          "results": []
+        }
+      },
+      "body_params": [
+        {
+          "name": "mode",
+          "type": "string",
+          "required": true,
+          "description": "test 或 formal"
+        },
+        {
+          "name": "dry_run",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "items",
+          "type": "array",
+          "required": true,
+          "description": "每项包含 alert_id、recipient_id（test）和 preview_token（执行时）"
+        }
+      ]
+    },
+    "GET /api/workbench/read-model": {
+      "method": "GET",
+      "path": "/api/workbench/read-model",
+      "summary": "四个主 Tab 共用的只读批次、筛选、卡片、事件与榜单契约",
+      "public": false,
+      "tags": [
+        "casework",
+        "readonly"
+      ],
+      "response": {
+        "data": {
+          "status": "available",
+          "reason": "",
+          "time": {},
+          "filters": {},
+          "cards": {},
+          "funnel": {
+            "ET": {
+              "status": "available",
+              "distinct_key": "account_id",
+              "mapping_success": {
+                "value": 1994,
+                "status": "known"
+              },
+              "current_ccr_complete": {
+                "value": 0,
+                "status": "known"
+              },
+              "advertiser_pairs": {
+                "value": 15807,
+                "status": "known"
+              },
+              "advertiser_pair_ccr_complete": {
+                "value": 15807,
+                "status": "known"
+              },
+              "advertiser_pair_nfs_complete": {
+                "value": 15807,
+                "status": "known"
+              },
+              "advertiser_pair_rule_eligible": {
+                "value": 15807,
+                "status": "known"
+              }
+            },
+            "THT": {
+              "status": "available",
+              "distinct_key": "advertiser_id",
+              "comparison_protection_time_valid": {
+                "value": 4096,
+                "status": "known"
+              },
+              "comparison_window_complete": {
+                "value": 4096,
+                "status": "known"
+              },
+              "comparison_queried": {
+                "value": 4096,
+                "status": "known"
+              },
+              "comparison_success": {
+                "value": 100,
+                "status": "known"
+              },
+              "comparison_no_data": {
+                "value": 3996,
+                "status": "known"
+              },
+              "comparison_failed": {
+                "value": 0,
+                "status": "known"
+              },
+              "comparison_budget_skipped": {
+                "value": 0,
+                "status": "known"
+              },
+              "growth_ranking_status": "complete"
+            },
+            "ST": {
+              "status": "not_scanned",
+              "distinct_clients": {
+                "value": null,
+                "status": "unknown"
+              }
+            }
+          },
+          "policy": {
+            "policy_version": "TAP-20261021-v2",
+            "snapshot_levels_are_historical": true
+          },
+          "rows": [
+            {
+              "program": "THT",
+              "comparison": {
+                "pre_ccr": 0.4,
+                "post_ccr": 0.8,
+                "pre_ccr_fact": {
+                  "value": 0.4,
+                  "status": "available",
+                  "reason": ""
+                },
+                "post_ccr_fact": {
+                  "value": 0.8,
+                  "status": "available",
+                  "reason": ""
+                },
+                "increase_fact": {
+                  "value": 100,
+                  "status": "available",
+                  "reason": ""
+                },
+                "pre_nfs": 1,
+                "post_nfs": 2,
+                "pre_revenue": null,
+                "post_revenue": null,
+                "status": "available",
+                "source": {
+                  "rid": 2942519,
+                  "grain": "account_advertiser_window",
+                  "window_complete": true,
+                  "request_ids": {}
+                }
+              }
+            }
+          ],
+          "rankings": {},
+          "pagination": {},
+          "contract_version": "2026-10-26",
+          "side_effects": false
+        }
+      },
+      "query_params": [
+        {
+          "name": "time_mode",
+          "type": "string",
+          "required": true,
+          "description": "weekly 或 custom"
+        },
+        {
+          "name": "batch_id",
+          "type": "string",
+          "description": "weekly 模式真实批次 ID；空值取最新真实批次"
+        },
+        {
+          "name": "start_date",
+          "type": "string",
+          "description": "custom 模式开始日期 YYYY-MM-DD"
+        },
+        {
+          "name": "end_date",
+          "type": "string",
+          "description": "custom 模式结束日期 YYYY-MM-DD"
+        },
+        {
+          "name": "program",
+          "type": "string",
+          "description": "ET/THT/ST"
+        },
+        {
+          "name": "tier",
+          "type": "string"
+        },
+        {
+          "name": "region",
+          "type": "string"
+        },
+        {
+          "name": "submitter",
+          "type": "string"
+        },
+        {
+          "name": "account_id",
+          "type": "string"
+        },
+        {
+          "name": "advertiser_id",
+          "type": "string"
+        },
+        {
+          "name": "search",
+          "type": "string"
+        },
+        {
+          "name": "only_mine",
+          "type": "boolean",
+          "description": "必须由当前鉴权身份唯一命中权威人员映射"
+        },
+        {
+          "name": "stage",
+          "type": "string",
+          "description": "pending_operator/pending_submitter/closed"
+        },
+        {
+          "name": "ranking",
+          "type": "string",
+          "description": "combined/absolute/growth"
+        },
+        {
+          "name": "page",
+          "type": "integer"
+        },
+        {
+          "name": "page_size",
+          "type": "integer"
+        }
+      ]
+    },
+    "POST /api/workbench/reported-reasons/refresh": {
+      "method": "POST",
+      "path": "/api/workbench/reported-reasons/refresh",
+      "summary": "按 ET Account 与 Advertiser 定向刷新 Current Window 原因 Top3，仅更新关联持久化行",
+      "public": false,
+      "tags": [
+        "casework",
+        "reported-reasons"
+      ],
+      "response": {
+        "data": {
+          "status": "success",
+          "account_id": "7000000000000000001",
+          "advertiser_id": "7100000000000000001",
+          "batch_id": "TAP-WEEK-2026-10-19-2026-10-25",
+          "current_window": {
+            "start_date": "2026-10-19",
+            "end_date": "2026-10-25"
+          },
+          "reason_status": "available",
+          "reason_error": "",
+          "valid_reason_count": 3,
+          "sort_basis": "CCR",
+          "reported_reasons": [],
+          "updated_rows": 1,
+          "targeted_only": true,
+          "side_effects": {
+            "case_status": false,
+            "actions": false,
+            "notifications": false
+          }
+        }
+      },
+      "body_params": [
+        {
+          "name": "account_id",
+          "type": "string",
+          "required": true,
+          "description": "19 位 ET Account ID，按字符串处理"
+        },
+        {
+          "name": "advertiser_id",
+          "type": "string",
+          "required": true,
+          "description": "19 位 Advertiser ID，按字符串处理"
+        },
+        {
+          "name": "batch_id",
+          "type": "string",
+          "description": "可选周度批次；空值取包含该 pair 的最新 ET 批次"
+        }
+      ]
+    },
+    "GET /api/workbench/risk-policy": {
+      "method": "GET",
+      "path": "/api/workbench/risk-policy",
+      "summary": "获取后端权威生效阈值、版本、权限与最近自动重判状态",
+      "public": false,
+      "tags": [
+        "casework",
+        "risk-policy",
+        "readonly"
+      ],
+      "response": {
+        "data": {
+          "version": 1,
+          "version_label": "TAP-RISK-1",
+          "config_hash": "sha256",
+          "rules": [],
+          "is_operator": true,
+          "updated_by": "operator",
+          "updated_at": "2026-10-26T14:00:00Z",
+          "latest_rejudgement": {}
+        }
+      }
+    },
+    "PUT /api/workbench/risk-policy": {
+      "method": "PUT",
+      "path": "/api/workbench/risk-policy",
+      "summary": "运营使用预览票据、CAS 与幂等键确认并提交新阈值配置，自动创建当前周重判任务",
+      "public": false,
+      "tags": [
+        "casework",
+        "risk-policy"
+      ],
+      "response": {
+        "data": {
+          "version": 2,
+          "version_label": "TAP-RISK-2",
+          "config_hash": "sha256",
+          "rules": [],
+          "warnings": [],
+          "rejudgement": {},
+          "idempotent": false,
+          "unchanged": false
+        }
+      },
+      "body_params": [
+        {
+          "name": "expected_version",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "preview_token",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "request_id",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "confirmation_note",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "rules",
+          "type": "array",
+          "required": true
+        }
+      ]
+    },
+    "POST /api/workbench/risk-policy/preview": {
+      "method": "POST",
+      "path": "/api/workbench/risk-policy/preview",
+      "summary": "运营基于当前周持久化 ET/ST/THT 指标只读预览阈值草稿影响，不查询 Aeolus 或产生写副作用",
+      "public": false,
+      "tags": [
+        "casework",
+        "risk-policy",
+        "readonly"
+      ],
+      "response": {
+        "data": {
+          "expected_version": 1,
+          "draft_hash": "sha256",
+          "preview_token": "token",
+          "warnings": [],
+          "programs": {},
+          "total": {},
+          "source_batch_ids": [],
+          "data_freshness": {},
+          "partial": false,
+          "failure_reasons": [],
+          "side_effects": {
+            "jobs": false,
+            "cases": false,
+            "outbox": false,
+            "aeolus": false
+          }
+        }
+      },
+      "body_params": [
+        {
+          "name": "expected_version",
+          "type": "integer",
+          "required": true
+        },
+        {
+          "name": "rules",
+          "type": "array",
+          "required": true
+        }
+      ]
+    },
+    "GET /api/workbench/risk-policy/rejudgements": {
+      "method": "GET",
+      "path": "/api/workbench/risk-policy/rejudgements",
+      "summary": "获取阈值配置自动重判任务状态与历史，供前端轮询",
+      "public": false,
+      "tags": [
+        "casework",
+        "risk-policy",
+        "readonly"
+      ],
+      "response": {
+        "data": {
+          "tasks": []
+        }
+      }
+    },
+    "GET /api/workbench/risk-policy/versions": {
+      "method": "GET",
+      "path": "/api/workbench/risk-policy/versions",
+      "summary": "获取阈值配置版本与变更审计列表",
+      "public": false,
+      "tags": [
+        "casework",
+        "risk-policy",
+        "readonly"
+      ],
+      "response": {
+        "data": {
+          "versions": []
+        }
+      }
+    }
+  },
+  "refresh_semantics": "generated from app/api IDL; also overwritten by Go service startup",
+  "progressive_loading": true
+}
