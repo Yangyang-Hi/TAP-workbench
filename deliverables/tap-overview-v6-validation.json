@@ -1,0 +1,12 @@
+{
+  "zip_valid": true,
+  "app_id": "app_55cc4d81544026ab",
+  "files": 332,
+  "zip_bytes": 8477415,
+  "sha256": "9af26f19bf20f942d64c363485cf844315c1c712b353cd16cf68f13fccabf3e6",
+  "packaged_binary_executable": true,
+  "standard_service": true,
+  "unexecutable_development_binary_falls_back_to_release": true,
+  "packaged_preview_assets_and_auth": true,
+  "no_runtime_state_or_credentials": true
+}
