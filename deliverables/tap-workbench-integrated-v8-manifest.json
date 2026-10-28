@@ -1,0 +1,302 @@
+{
+  "app_id": "app_e5d1388d65ef1b49",
+  "package_revision": 8,
+  "base_zip_sha256": "9b3072bd3d07610588b88417c69fe183522976060f59035e55fdb0f626f84057",
+  "architecture": "shared normal backend; new Overview entry; original native SDK/assets preserved",
+  "native_frontend_sources_preserved": 64,
+  "native_assets_preserved": 8,
+  "original_go_files_preserved": 131,
+  "original_api_contracts_preserved": 48,
+  "added_authenticated_get_routes": 4,
+  "frontend_tests_passed": 84,
+  "overview_go_tests_race_passed": 33,
+  "original_go_tests_passed": 86,
+  "original_go_tests_environment_blocked": [
+    "TestResumeMissingCurrentUsesSameETJobAndSkipsCompletedNulls: missing aime CLI; reproduced in unmerged baseline"
+  ],
+  "live_cloud_startup_verified": false,
+  "live_feishu_send_performed": false,
+  "amy_changes_after_uploaded_baseline_included": false,
+  "changed_files": [
+    {
+      "path": "README_INTEGRATED_APP.md",
+      "change": "added",
+      "sha256": "bccf89d38e8da82bc3464682e8d264f50b6bcd02475fb5becbf6f217eadb3778"
+    },
+    {
+      "path": ".appignore",
+      "change": "modified",
+      "sha256": "1a2156d4c38681af2434e97f2d23d122c5d6bde202269741ac221fa3d1cac13d"
+    },
+    {
+      "path": "pack.sh",
+      "change": "modified",
+      "sha256": "076a9d25712e98e927acbba9b82f90d96c9bcc6404aca5d3a573a85262cbe7d5"
+    },
+    {
+      "path": "app.json",
+      "change": "modified",
+      "sha256": "4166495f695cc493a1c1626d201a9e5c7e26d8e4b80fe68e3391722a6eaa9f0d"
+    },
+    {
+      "path": "tools/build_app.py",
+      "change": "modified",
+      "sha256": "ea49645d6b950c799217f758ebef676ead14b00a15c2e8daf86ea0f2007ff3f2"
+    },
+    {
+      "path": "tools/build_integrated_overview.mjs",
+      "change": "added",
+      "sha256": "32d3a40244fb4a84aeb059c7dc0f27829641315a73a93de5f731c7f0046de762"
+    },
+    {
+      "path": "config/workbench_build.json",
+      "change": "added",
+      "sha256": "ba305af5ba941f92f7d92f8814e68194c3241d0e1b30cf2e34e3580a721a317f"
+    },
+    {
+      "path": "docs/integration/merged-overview-mobile.png",
+      "change": "added",
+      "sha256": "de097407a57e6a31020a00c6eaaf0f4100cd74d4daec61cbd8838cfb2826339a"
+    },
+    {
+      "path": "docs/integration/merged-risk.png",
+      "change": "added",
+      "sha256": "13b989f9a1c2d4d9c845a34e3f0eeb86c67b317579be749e6a7a8432bcf483ac"
+    },
+    {
+      "path": "docs/integration/merged-analysis.png",
+      "change": "added",
+      "sha256": "d9062b845c654cd54ff261cb2743e5eac944d839124e790096e235af67c5bd57"
+    },
+    {
+      "path": "docs/integration/merged-overview-desktop.png",
+      "change": "added",
+      "sha256": "2cdc6fcdfd9e745f28e79cd6445e957f59528a70c99721c5e3cb0477d8d531af"
+    },
+    {
+      "path": "docs/integration/验收说明.md",
+      "change": "added",
+      "sha256": "96ce0a7e8f702bf355b6eb7c058a49793396301f36d57173e46c83663f595a8c"
+    },
+    {
+      "path": "app/api/api.yaml",
+      "change": "modified",
+      "sha256": "41c84c95cbf05392427a0f8915ad1215d27bdea626f26e5216adf7a9e71c7555"
+    },
+    {
+      "path": "app/frontend/tsconfig.overview.json",
+      "change": "added",
+      "sha256": "2515538abba93ff09c9315869027d7fb4efa46738e3971374f316853d08706db"
+    },
+    {
+      "path": "app/server-go/overview_integration_test.go",
+      "change": "added",
+      "sha256": "af04aa95f988e682297181935c473e01aed4ef637e5b30da81aabb7b881b2dc1"
+    },
+    {
+      "path": "app/server-go/overview_governance.go",
+      "change": "added",
+      "sha256": "f0cba5b8596c48ba6f09263826b8c36a301b35423faf688227e0756879da9d5c"
+    },
+    {
+      "path": "app/server-go/handler_overview_dashboard.go",
+      "change": "added",
+      "sha256": "b3c4891977f41cb56acedd7b9e134989aeaca7f4b84b09dd6da9ff7b8c226c53"
+    },
+    {
+      "path": "app/server-go/overview_extended_test.go",
+      "change": "added",
+      "sha256": "033fd504e74f8b3b11c02e47e330329edf4a4ee5c9c3bddb64d47b3b464330c0"
+    },
+    {
+      "path": "app/server-go/overview_accounts_test.go",
+      "change": "added",
+      "sha256": "fc4bc250c103c118dd6fed4990f9a297cf860c354ad2abcde96bc07b1cb4c0cb"
+    },
+    {
+      "path": "app/server-go/overview_quota.go",
+      "change": "added",
+      "sha256": "97a4d5f3c54b3d96bf7ac1bc596fb4e237cc53f3a366948690c39614f282fd2e"
+    },
+    {
+      "path": "app/server-go/overview_facts_test.go",
+      "change": "added",
+      "sha256": "d2c72cb1ae803f50ec6b4080ddd80b7438e51b108af4b805dbccfc4df0a5368b"
+    },
+    {
+      "path": "app/server-go/handler_overview.gen.go",
+      "change": "added",
+      "sha256": "d90c30e906f8ebc78d50132d2ec5213b3ae5af53531b522125422ca2c8644739"
+    },
+    {
+      "path": "app/server-go/overview_metrics_test.go",
+      "change": "added",
+      "sha256": "41c39eed2d203952ab620533a9f822fa34d702d81402a2a653c12a99ee8a0523"
+    },
+    {
+      "path": "app/server-go/overview_metrics.go",
+      "change": "added",
+      "sha256": "98f4d38285abf751303f916ba52f03ddead60c1f1bd47da6871d2bea11e0ee42"
+    },
+    {
+      "path": "app/server-go/handler_overview_dashboard.gen.go",
+      "change": "added",
+      "sha256": "a5781f2041fa90c4a1ab451431f9c1df4743b2ad343409efe80f6435f773181d"
+    },
+    {
+      "path": "app/server-go/handler_static.go",
+      "change": "modified",
+      "sha256": "60525bf749e0168d5637fa6bd7618a4215cb3827149c1adb94f54e3befe91d28"
+    },
+    {
+      "path": "app/server-go/handler_overview.go",
+      "change": "added",
+      "sha256": "558175766e16687a036da9f810648c2dc5dbbfdb930dfc393ee9521a543f7ee9"
+    },
+    {
+      "path": "app/server-go/overview_extended.go",
+      "change": "added",
+      "sha256": "008852f5537aab4445eaa11102b965ce47d9815f456bac15e709676cf284fd43"
+    },
+    {
+      "path": "app/server-go/start.sh",
+      "change": "modified",
+      "sha256": "241e8d492ab9ea8626121174aa296e35097317c28192ea81057cc0a1c6369a4b"
+    },
+    {
+      "path": "app/server-go/overview_accounts.go",
+      "change": "added",
+      "sha256": "edf9b4fadfe3350275491c1b856559fa3bec73f4c8b0bd064c499f7d69498b89"
+    },
+    {
+      "path": "app/server-go/overview_report_contract.go",
+      "change": "added",
+      "sha256": "c4b5c7f04065556fd6f31783b158d2687d8768cc418919123b491fdba3c0a966"
+    },
+    {
+      "path": "app/server-go/aeolus_titan_probe.go",
+      "change": "modified",
+      "sha256": "d8e5938bc7fe3a1cd028735373bd1a61dede4105a8c2d01417c469cf5f41045a"
+    },
+    {
+      "path": "app/native-host/manifest.json",
+      "change": "added",
+      "sha256": "a0155ada9f796839d0a5f001b37c0648e32042908f2c39fca0618292f04690f6"
+    },
+    {
+      "path": "app/native-host/index.html",
+      "change": "added",
+      "sha256": "66d3a437528ef7db36f1b852f17ea2db9a58ce15f0e80a46bb398195cab41ae6"
+    },
+    {
+      "path": "app/frontend/src/integrated-overview-entry.tsx",
+      "change": "added",
+      "sha256": "f74628198ae73bd6b127e7067cafcce1b7d45619f9d01b66c7d49465c5738355"
+    },
+    {
+      "path": "app/frontend/src/api/client.gen.ts",
+      "change": "modified",
+      "sha256": "6c13cb3e151d8106981ab4b6f7126e782c0bd7de7e35641e93facba4a437a2dd"
+    },
+    {
+      "path": "app/frontend/src/pages/governance/integrated-overview.tsx",
+      "change": "added",
+      "sha256": "fdd9bf855e0b2793d18f39183ccc957784697c4249af3a6390e4fb8c7e550499"
+    },
+    {
+      "path": "app/frontend/src/pages/governance/overview-dashboard.tsx",
+      "change": "added",
+      "sha256": "7903e48ac5170334f9eb4f892f378272c97b17a5afe2ac56a1c021d9f6375b7e"
+    },
+    {
+      "path": "app/frontend/src/pages/governance/overview-accounts.test.tsx",
+      "change": "added",
+      "sha256": "aa8eb8d41df0ac7548be941bfd594ece89187857b1ac7b1dd11f80324860a1a3"
+    },
+    {
+      "path": "app/frontend/src/pages/governance/overview-accounts.tsx",
+      "change": "added",
+      "sha256": "928dafb7c4faa160fcc7eedcccdbb4e339827b03054b565dc587d166a7b6115e"
+    },
+    {
+      "path": "app/frontend/src/pages/governance/overview-accounts.css",
+      "change": "added",
+      "sha256": "7c5ade9fa8903238a657b726f79cc6fd206a4954b909acdf84dddaef505844f4"
+    },
+    {
+      "path": "app/frontend/src/pages/governance/overview-dashboard.css",
+      "change": "added",
+      "sha256": "4811a7384a1b4ee34b9037738d5845730a9dd50267f064dcdf4a0c06689a5b45"
+    },
+    {
+      "path": "app/frontend/src/pages/governance/workbench-integration.test.tsx",
+      "change": "added",
+      "sha256": "c23a1b2f868c94a778457786ee7736331ffff6414ad5d56ef576493947b69533"
+    },
+    {
+      "path": "app/frontend/src/pages/governance/overview-dashboard.test.tsx",
+      "change": "added",
+      "sha256": "cb80cc19acb6df4afabd8e46fbc615c6b9b84a0d3d2553c9cd344b9c1e3fbd79"
+    },
+    {
+      "path": "app/native-host/assets/index-BI4vDceMQjeErxIX.js",
+      "change": "added",
+      "sha256": "c0db3b46d134de2d8f6cdb012942faaa36092e10d3202869b6072baccf0eb8da"
+    },
+    {
+      "path": "app/native-host/assets/index-BE8XWvGjFB9rLBoG.js",
+      "change": "added",
+      "sha256": "82af984913dd10fcb9d5f29f2f15b2509c4bd6b1fcea747f6590065410e0478e"
+    },
+    {
+      "path": "app/native-host/assets/react-vendor-3-9Tu3POYFYloXEx.js",
+      "change": "added",
+      "sha256": "d47469904cce26ab2b763912a41d6c84cdbda6072a09d96169535ffc6f935ae3"
+    },
+    {
+      "path": "app/native-host/assets/arco-SmfbuIkzq4OBfC1z.js",
+      "change": "added",
+      "sha256": "e7ab2e9ab47b1133c943ae1b47d0081259ad4b73081948811c590c303879cc3e"
+    },
+    {
+      "path": "app/native-host/assets/index.esm-B3B4MEp3BkTeAHDm.js",
+      "change": "added",
+      "sha256": "53bf4f86f2d6dcd09648f7eea6f919bf76554d6c229897190f26541e0a8b5a5c"
+    },
+    {
+      "path": "app/native-host/assets/index-BdLf-yeRVl6qwLsh.css",
+      "change": "added",
+      "sha256": "e73a04a932dea5e05708d537b596b9c3ef23aae881f253ced0f05a85932eb20b"
+    },
+    {
+      "path": "app/native-host/assets/index-BAlLC3J9pdj6s_G-.js",
+      "change": "added",
+      "sha256": "32d5af1b6ef7e572f88e59ecf7d8dc484af6a20fb86567e1356e167c9ddf9f2d"
+    },
+    {
+      "path": "tools/workbench-frontend/package.json",
+      "change": "added",
+      "sha256": "475d856e6be1171e1b175321030aa208393b328f31ef259e932da1b68b8df76a"
+    },
+    {
+      "path": "tools/workbench-frontend/package-lock.json",
+      "change": "added",
+      "sha256": "1ce22a6740bd21385369148e67f1938f81e0dd7a9647caef3f5d2665a936c84e"
+    },
+    {
+      "path": "skills/tap-governance-workbench-v6-live-aime-app-cli/api_client.gen.py",
+      "change": "modified",
+      "sha256": "821efe8e8c8cb69034af7417e4e443d21d76333c8ea56618ff8f47d128703483"
+    },
+    {
+      "path": "skills/tap-governance-workbench-v6-live-aime-app-cli/references/api-routes.index.json",
+      "change": "modified",
+      "sha256": "6bcccdad76c79746762176223434aaedd2ca4c2dabdf23319df5a3abb0659aa2"
+    },
+    {
+      "path": "skills/tap-governance-workbench-v6-live-aime-app-cli/references/api-routes.details.json",
+      "change": "modified",
+      "sha256": "78fbbbef11dcbeb528ed293211317bfedbfa98727178020cd545dd05a7d26fca"
+    }
+  ]
+}

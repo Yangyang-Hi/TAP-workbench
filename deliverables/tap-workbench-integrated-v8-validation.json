@@ -1,0 +1,13 @@
+{
+  "zip_valid": true,
+  "app_id": "app_e5d1388d65ef1b49",
+  "files": 346,
+  "bytes": 10770218,
+  "sha256": "dcacfa0122d536750e258ecb58e9b38eb5959c469653a3d986efc48559fb5015",
+  "executable_release_binary": true,
+  "native_frontend_sources_preserved": 64,
+  "native_asset_hashes_preserved": 8,
+  "no_trial_isolation": true,
+  "packaged_http_routes_assets_auth_smoke": true,
+  "full_cloud_worker_startup_verified": false
+}
