@@ -1,0 +1,23 @@
+{
+  "app_id": "app_55cc4d81544026ab",
+  "base_app_id": "app_e5d1388d65ef1b49",
+  "base_zip_sha256": "dcacfa0122d536750e258ecb58e9b38eb5959c469653a3d986efc48559fb5015",
+  "zip_sha256": "cefe66d32408872120dd5e84d53546b37be1f35704a453361cf5d3fa3ae75768",
+  "bytes": 10771394,
+  "changed_existing_files": [
+    "INTEGRATION_MANIFEST.json",
+    "app.json",
+    "config/alert_workbench.json"
+  ],
+  "added_files": [
+    "README_DRAFT_INSTALL.md"
+  ],
+  "all_other_entries_byte_identical": true,
+  "zip_crc_verified": true,
+  "executable_service_present": true,
+  "weekly_scheduler_enabled": false,
+  "notification_mode": "disabled",
+  "cloud_data_isolation_verified": false,
+  "live_aime_install_verified": false,
+  "note": "Business sources/assets unchanged. Original default notification link and native telemetry identifiers remain original; draft is for page/query acceptance."
+}
